@@ -31,6 +31,24 @@
 *.out
 *.app
 
-bin/
+#ignore thumbnails created by windows
+Thumbs.db
+#Ignore files build by Visual Studio
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.sbr
 obj/
-x64/
+[Rr]elease*/
+_ReSharper*/
