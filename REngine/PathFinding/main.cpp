@@ -77,6 +77,7 @@ bool GameUpdate() {
 
 void GameCleanup() {
 	UnloadTexture(myTexture);
+	myTileMap.cleanup();
 }
 
 void RenderDebugUI() {
