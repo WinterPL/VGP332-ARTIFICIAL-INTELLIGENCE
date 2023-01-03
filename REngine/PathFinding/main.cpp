@@ -66,8 +66,6 @@ bool GameUpdate() {
 		}
 	}
 
-	
-
 	//DrawTexture(myTexture, position.x,position.y,WHITE);
 	DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
 
