@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP332", "VGP332", "{3064C1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PathFinding", "PathFinding\PathFinding.vcxproj", "{998E4BBC-B8BF-4045-ABDB-34DD57C2F5B7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AI", "AI\AI.vcxproj", "{E94E9F24-67A1-42A1-A4A6-EA14509F08EA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AI", "Framework\AI\AI.vcxproj", "{E94E9F24-67A1-42A1-A4A6-EA14509F08EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
