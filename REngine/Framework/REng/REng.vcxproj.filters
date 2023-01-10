@@ -27,12 +27,22 @@
     <ClInclude Include="src\REngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Precompiled.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RayLibImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Precompiled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\REngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

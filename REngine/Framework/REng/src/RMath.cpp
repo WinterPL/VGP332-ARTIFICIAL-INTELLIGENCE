@@ -1,6 +1,4 @@
-#include <iostream>
-#include <math.h>
-
+#include "Precompiled.h"
 #include "RMath.h"
 
 using namespace REng;

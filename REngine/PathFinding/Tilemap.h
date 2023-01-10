@@ -1,11 +1,6 @@
 #pragma once
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <string>
 #include <REngine.h>
-
+#include "AI.h"
 using namespace std;
 
 class Tilemap
@@ -17,8 +12,10 @@ public :
 	void cleanup();
 
 private:
+	AI::GridBaseGraph mGridBaseGrahp;
 	std::vector<int> mTileMap;
 	std::vector<Texture2D> mTileMapTextures;
+
 	int mRows;
 	int mColumns;
 	int mTileSize;

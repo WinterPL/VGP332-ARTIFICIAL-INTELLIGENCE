@@ -1,6 +1,4 @@
-#include <assert.h>
-#include <raylib.h>
-#include <vector>
+#include "Precompiled.h"
 
 namespace REng
 {

@@ -1,10 +1,7 @@
 #pragma once
 
-#include <iostream>
-#include <raylib.h>
-#include <string>
-#include <imgui.h>
 #include "RayLibImGui.h"
+#include "Precompiled.h"
 
 namespace REng
 {

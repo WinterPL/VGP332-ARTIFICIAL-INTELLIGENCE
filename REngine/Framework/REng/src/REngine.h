@@ -1,9 +1,7 @@
 #pragma once
-
-#include <raylib.h>
+#include "Common.h"
 #include "RCore.h"
 #include "RMath.h"
-
 namespace REng
 {
 extern void Start(const char* windowTitle);
