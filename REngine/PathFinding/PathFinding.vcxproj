@@ -151,6 +151,9 @@
     <ClCompile Include="Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Framework\AI\AI.vcxproj">
+      <Project>{e94e9f24-67a1-42a1-a4a6-ea14509f08ea}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Framework\REng\REng.vcxproj">
       <Project>{4ae43ef3-c7ac-4c36-8ecb-36e394711bdb}</Project>
     </ProjectReference>
