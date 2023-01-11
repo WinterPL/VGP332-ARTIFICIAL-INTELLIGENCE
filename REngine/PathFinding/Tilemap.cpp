@@ -36,10 +36,13 @@ void Tilemap::LoadTiles(const char* tilepath) {
     {
         Texture2D tempTexture;
         std::string fullpath;
-        getline(file, line);
+        getline(file, line, ' ');
+        std::cout << line << endl;
         REng::ResourcesFullPath(line, fullpath);
         tempTexture = LoadTexture(fullpath.c_str());
         mTileMapTextures.push_back(tempTexture);
+        getline(file, line);
+        std::cout << line << endl;
     }
 	
 }

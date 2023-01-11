@@ -20,7 +20,9 @@ namespace AI
 			std::array<Node*, 8> neighbors = {};
 			int column = 0;
 			int row = 0;
+			Node() {};
 			Node(int x, int y) :row(x), column(y) {};
+			~Node() {};
 		};
 		void initialize(int columns, int rows);
 
