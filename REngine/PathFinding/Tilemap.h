@@ -13,9 +13,10 @@ public :
 	void cleanup();
 
 private:
-	AI::GridBaseGraph mGridBaseGrahp;
 	std::vector<int> mTileMap;
 	std::vector<Texture2D> mTileMapTextures;
+
+	AI::GridBaseGraph mGridBaseGrahp;
 
 	int mRows;
 	int mColumns;

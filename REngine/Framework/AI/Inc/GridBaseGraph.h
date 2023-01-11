@@ -20,6 +20,7 @@ namespace AI
 			std::array<Node*, 8> neighbors = {};
 			int column = 0;
 			int row = 0;
+			Node(int x, int y) :row(x), column(y) {};
 		};
 		void initialize(int columns, int rows);
 
@@ -31,6 +32,8 @@ namespace AI
 
 	private:
 		int GetIndex(int x, int y) const;
+
+		std::vector<std::vector<Node>> mNodes;
 		int mColumns = 0;
 		int mRows = 0;
 
