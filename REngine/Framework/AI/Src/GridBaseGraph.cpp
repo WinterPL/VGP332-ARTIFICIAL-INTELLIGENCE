@@ -12,6 +12,7 @@ namespace AI {
 			for (int j = 0; j < rows; j++) {
 				mNodes[i][j] = Node(j,i);
 
+				if (i != 0) {mNodes[i][j].neighbors[(int)Directions::North] = &mNodes[i - 1][j];}
 
 			}
 		}
