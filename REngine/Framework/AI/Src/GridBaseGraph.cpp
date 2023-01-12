@@ -12,8 +12,14 @@ namespace AI {
 			for (int j = 0; j < rows; j++) {
 				mNodes[i][j] = Node(j,i);
 
-				if (i != 0) {mNodes[i][j].neighbors[(int)Directions::North] = &mNodes[i - 1][j];}
-
+				if (i != 0) {mNodes[i][j].neighbors[(int)Directions::North] = &mNodes[i-1][j];}
+				if (i != 0 && j != rows - 1) { mNodes[i][j].neighbors[(int)Directions::NorthEast] = &mNodes[i-1][j+1]; }
+				if (i != rows - 1) { mNodes[i][j].neighbors[(int)Directions::East] = &mNodes[i][j+1]; }
+				if (i != columns -1 && j != rows - 1) { mNodes[i][j].neighbors[(int)Directions::SouthEast] = &mNodes[i+1][j+1]; }
+				if (i != columns - 1) {mNodes[i][j].neighbors[(int)Directions::South] = &mNodes[i + 1][j];}
+				if (i != columns -1 && j != 0) { mNodes[i][j].neighbors[(int)Directions::SouthWest] = &mNodes[i+1][j-1]; }
+				if (i != 0 && j != 0) { mNodes[i][j].neighbors[(int)Directions::West] = &mNodes[i][j-1]; }
+				if (i != 0 && j != 0) { mNodes[i][j].neighbors[(int)Directions::NorthWest] = &mNodes[i-1][j-1]; }
 			}
 		}
 

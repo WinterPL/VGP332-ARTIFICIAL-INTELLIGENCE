@@ -10,9 +10,9 @@ namespace AI
 			East,
 			West,
 			NorthEast,
-			NorthWast,
+			NorthWest,
 			SouthEast,
-			SouthWast
+			SouthWest
 		};
 
 		struct Node

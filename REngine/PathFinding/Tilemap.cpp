@@ -26,6 +26,7 @@ void Tilemap::LoadTileMap(const char* tileMap, int tileSize) {
         }
     }
 
+    mGridBaseGrahp.initialize(mRows,mColumns);
     file.close();
 }
 
