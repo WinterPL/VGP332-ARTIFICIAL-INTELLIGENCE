@@ -5,7 +5,7 @@ namespace AI {
 	void GridBaseGraph::initialize(int rows, int columns) {
 		mNodes.resize(columns);
 		for (auto& r : mNodes) {
-			r.resize(rows);
+			r.resize(rows+1);
 		}
 
 		for (int i = 0; i < columns; i++) {
