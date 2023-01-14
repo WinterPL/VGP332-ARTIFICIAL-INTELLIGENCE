@@ -104,16 +104,16 @@ void Tilemap::Render() {
         int ct = 0;
         for(int i : mTileMap)
         {
-            if (mTileMap[i + 1] <= 5 && rt<=48) {
+            if (mTileMap[i + 1] <= 5 && rt <= 48) {
                 DrawLine(Xpos, Ypos, Xpos+32, Ypos, WHITE);
             }
-            if (mTileMap[i + 50] <= 5 && rt <= 50 && ct <= 26) {
+            if (mTileMap[i + 51] <= 5 && rt <= 50 && ct <= 26) {
                 DrawLine(Xpos, Ypos, Xpos, Ypos+32, WHITE);
             }
-            if (mTileMap[i + 51] <= 5 && rt <= 48 && ct <= 26) {
+           if (mTileMap[i + 52] <= 5 && rt <= 48 && ct <= 26) {
                 DrawLine(Xpos, Ypos, Xpos+32, Ypos + 32, WHITE);
             }
-            if (mTileMap[i + 49] <= 5 && rt != 0 && ct <= 26) {
+            if (mTileMap[i + 50] < 5 && rt > 0 && ct <= 26) {
                 DrawLine(Xpos, Ypos, Xpos - 32, Ypos + 32, WHITE);
             }
             Xpos += 32;
