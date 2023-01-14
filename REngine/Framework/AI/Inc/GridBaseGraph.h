@@ -6,13 +6,13 @@ namespace AI
 	public:
 		enum Directions {
 			North,
-			NorthEast,
-			East,
-			SouthEast,
 			South,
-			SouthWest,
+			East,
 			West,
+			NorthEast,
 			NorthWest,
+			SouthEast,
+			SouthWest
 		};
 
 		struct Node
