@@ -35,7 +35,8 @@ namespace AI
 	private:
 		int GetIndex(int x, int y) const;
 
-		std::vector<std::vector<Node>> mNodes;
+		std::vector<Node> mNodes;
+		//std::vector<std::vector<Node>> mNodes;
 		int mColumns = 0;
 		int mRows = 0;
 
