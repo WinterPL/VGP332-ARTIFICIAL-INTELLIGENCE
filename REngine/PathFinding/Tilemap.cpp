@@ -8,22 +8,58 @@ namespace {
 
 
 void Tilemap::LoadTileMap(const char* tileMap) {
-    string line;
-    fstream file(tileMap);
-    getline(file, line, ':');
-    getline(file, line);
-    mRows = stoi(line);
-    getline(file, line, ':');
-    getline(file, line);
-    mColumns = stoi(line);
+    //string line;
+    //fstream file(tileMap);
+    //getline(file, line, ':');
+    //getline(file, line);
+    //mRows = stoi(line);
+    //getline(file, line, ':');
+    //getline(file, line);
+    //mColumns = stoi(line);
+    //
+    //for (int i = 0; i < mColumns; i++) {
+    //    getline(file, line);
+    //    stringstream ss(line);
+    //    string line;
+    //    while (ss >> line) {
+    //        mTileMap.push_back((int)stoi(line));
+    //        //cout << line << endl;
+    //    }
+    //}
+    std::fstream file;
+    file.open(tileMap, std::ios::in);
 
-    for (int i = 0; i < mColumns; i++) {
-        getline(file, line);
-        stringstream ss(line);
-        string line;
-        while (ss >> line) {
-            mTileMap.push_back((int)stoi(line));
-            //cout << line << endl;
+    assert(file.is_open());
+    std::string line;
+    std::string value;
+
+    std::getline(file, line);
+    std::stringstream sStreamRows(line);
+    std::getline(sStreamRows, value, ' ');
+    std::getline(sStreamRows, value, '\n');
+    mRows = atoi(value.c_str());
+
+    std::getline(file, line); //Read from file
+    std::stringstream sStreamColumns(line);
+    std::getline(sStreamColumns, value, ' ');
+    std::getline(sStreamColumns, value, '\n');
+    mColumns = atoi(value.c_str());
+
+    while (std::getline(file, line) && line != "")
+    {
+        std::string lineString = line;
+        while (!lineString.empty())
+        {
+            size_t pos = lineString.find(" ");
+            std::string tileValue = lineString.substr(0, pos);
+            size_t prevSize = lineString.size();
+            lineString = lineString.substr(pos + 1);
+            size_t newSize = lineString.size();
+            mTileMap.push_back(atoi(tileValue.c_str()));
+            if (prevSize == newSize)
+            {
+                break;
+            }
         }
     }
 
@@ -56,9 +92,12 @@ void Tilemap::LoadTileMap(const char* tileMap) {
             }
         }
     }
-
-
 }
+
+REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y)const {
+    return { (x + 0.5f) * 32,(y + 0.5f) * 32};
+}
+
 
 std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int endX, int endY) {
     std::vector<REng::Math::Vector2> path;
@@ -67,7 +106,7 @@ std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int e
     BFS bfs;
 
     if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY)) {
-        closedList = bfs.GetClosedList();
+        //closedList = bfs.GetClosedList();
 
         auto node = closedList.back();
         while (node != nullptr)
@@ -77,6 +116,7 @@ std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int e
         }
         std::reverse(path.begin(), path.end());
     }
+    return path;
 }
 
 
@@ -212,6 +252,4 @@ bool Tilemap::IsBlock(int x, int y)const {
     return mTileMapTextures[mTileMap[ToinDex(x, y, mColumns)]].second >= 5;
 }
 
-REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y)const {
-    return {(x+0.5f)*mTileSize,(y+0.5f)*mTileSize};
-}
+

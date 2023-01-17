@@ -27,9 +27,9 @@ namespace AI {
 			}
 		}*/
 		mRows = rows; mColumns = columns;
-		mNodes.resize(rows * columns);
-		for (int y = 0; y < mRows; ++y) {
-			for (int x = 0; x < mColumns; ++x) {
+		mNodes.resize(mRows * mColumns);
+		for (int y = 0; y < mRows; ++y){
+			for (int x = 0; x < mColumns; ++x){
 				mNodes[GetIndex(x, y)].column = x;
 				mNodes[GetIndex(x, y)].row = y;
 			}
@@ -37,7 +37,12 @@ namespace AI {
 	}
 
 	void GridBaseGraph::ResetSearchParameter() {
-
+		for (auto& node : mNodes)
+		{
+			node.parent = nullptr;
+			node.opened = false;
+			node.closed = false;
+		}
 	}
 
 

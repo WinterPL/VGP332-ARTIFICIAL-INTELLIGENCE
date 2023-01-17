@@ -2,7 +2,7 @@
 #include "BFS.h"
 
 namespace AI {
-	bool BFS::Run(const GridBaseGraph& graph, int startX, int startY, int endX, int endY) {
+	bool BFS::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY) {
 		graph.ResetSearchParameter();
 		mOpenList.clear();
 		mClosedList.clear();
@@ -13,6 +13,8 @@ namespace AI {
 
 		bool found = false;
 
+
+		return found;
 	}
 
 }

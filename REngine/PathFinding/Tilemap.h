@@ -26,6 +26,6 @@ private:
 	bool done = true;
 	int mRows;
 	int mColumns;
-	int mTileSize;
+	int mTileSize = 32;
 };
 
