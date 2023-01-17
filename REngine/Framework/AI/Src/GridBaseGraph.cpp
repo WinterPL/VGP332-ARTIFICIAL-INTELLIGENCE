@@ -28,13 +28,18 @@ namespace AI {
 		}*/
 		mRows = rows; mColumns = columns;
 		mNodes.resize(rows * columns);
-		for (int y = 0; y < mColumns; ++y) {
-			for (int x = 0; x < mRows; ++x) {
+		for (int y = 0; y < mRows; ++y) {
+			for (int x = 0; x < mColumns; ++x) {
 				mNodes[GetIndex(x, y)].column = x;
 				mNodes[GetIndex(x, y)].row = y;
 			}
 		}
 	}
+
+	void GridBaseGraph::ResetSearchParameter() {
+
+	}
+
 
 	GridBaseGraph::Node* GridBaseGraph::GetNode(int x, int y) {
 		/*if (y >= mNodes.size() || x >= mNodes.front().size()) { return nullptr; }

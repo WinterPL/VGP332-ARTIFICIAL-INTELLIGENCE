@@ -18,7 +18,7 @@ using namespace REng;
 Tilemap myTileMap;
 
 void GameInit() {
-	{std::string fullpath;
+	/*{std::string fullpath;
 	REng::ResourcesFullPath("hero_spritesheet.png", fullpath);
 	rect.x = 0.0f;
 	rect.y = offsetY;
@@ -26,7 +26,7 @@ void GameInit() {
 	rect.height = offsetY;
 
 	myTexture = LoadTexture(fullpath.c_str());
-	}
+	}*/
 
 	myTileMap.LoadTileMap("tilemap.txt");
 	myTileMap.LoadTiles("tiles.txt");
@@ -66,9 +66,9 @@ bool GameUpdate() {
 	//		position.y += moveSpeed * GetFrameTime();
 	//	}
 	//}
-
-	//DrawTexture(myTexture, position.x,position.y,WHITE);
 	//DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
+
+
 
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	return isStopped;
@@ -124,3 +124,4 @@ int main() {
 //	REng::Run(GameUpdate, GameUIRender);
 //	REng::Stop();
 //}
+//DrawTexture(myTexture, position.x,position.y,WHITE);

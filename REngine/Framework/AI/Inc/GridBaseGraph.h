@@ -20,11 +20,15 @@ namespace AI
 			std::array<Node*, 8> neighbors = {};
 			int column = 0;
 			int row = 0;
-			Node() {};
-			Node(int x, int y) :row(x), column(y) {};
-			~Node() {};
+			
+			//search 
+			Node* parent = nullptr;
+			bool opened = false;
+			bool closed= false;
 		};
 		void initialize(int columns, int rows);
+		void ResetSearchParameter();
+
 
 		Node* GetNode(int x, int y);
 		const Node* GetNode(int x, int y)const;

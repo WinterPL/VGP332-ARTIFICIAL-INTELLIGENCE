@@ -3,6 +3,7 @@
 #include "AI.h"
 
 using namespace std;
+using namespace AI;
 
 class Tilemap
 {
@@ -12,7 +13,11 @@ public :
 	void Render();
 	void cleanup();
 
+	bool IsBlock(int x, int y) const;
+
+	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY);
 private:
+	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
 	std::vector<int> mTileMap = {};
 	std::vector<pair<Texture2D,int>> mTileMapTextures;
 
