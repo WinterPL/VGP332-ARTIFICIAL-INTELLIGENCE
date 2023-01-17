@@ -34,40 +34,40 @@ void GameInit() {
 bool GameUpdate() {
 	myTileMap.Render();
 
-	{//movement
-		float moveSpeed = 200.0f;
-		if (IsKeyDown(KeyboardKey::KEY_RIGHT)) {
-			position.x += moveSpeed * GetFrameTime();
-			currentTime += GetFrameTime();
-			if (currentTime > animMaxTime) {
-				currentFrame++;
-				currentFrame = currentFrame % frame;
-				rect.x = currentFrame * offsetX;
-				currentTime = 0.0f;
-				rect.width = offsetX;
-			}
-		}
-		if (IsKeyDown(KeyboardKey::KEY_LEFT)) {
-			position.x -= moveSpeed * GetFrameTime();
-			currentTime += GetFrameTime();
-			if (currentTime > animMaxTime) {
-				currentFrame++;
-				currentFrame = currentFrame % frame;
-				rect.x = currentFrame * offsetX;
-				currentTime = 0.0f;
-				rect.width = -offsetX;
-			}
-		}
-		if (IsKeyDown(KeyboardKey::KEY_UP)) {
-			position.y -= moveSpeed * GetFrameTime();
-		}
-		if (IsKeyDown(KeyboardKey::KEY_DOWN)) {
-			position.y += moveSpeed * GetFrameTime();
-		}
-	}
+	//{//movement
+	//	float moveSpeed = 200.0f;
+	//	if (IsKeyDown(KeyboardKey::KEY_RIGHT)) {
+	//		position.x += moveSpeed * GetFrameTime();
+	//		currentTime += GetFrameTime();
+	//		if (currentTime > animMaxTime) {
+	//			currentFrame++;
+	//			currentFrame = currentFrame % frame;
+	//			rect.x = currentFrame * offsetX;
+	//			currentTime = 0.0f;
+	//			rect.width = offsetX;
+	//		}
+	//	}
+	//	if (IsKeyDown(KeyboardKey::KEY_LEFT)) {
+	//		position.x -= moveSpeed * GetFrameTime();
+	//		currentTime += GetFrameTime();
+	//		if (currentTime > animMaxTime) {
+	//			currentFrame++;
+	//			currentFrame = currentFrame % frame;
+	//			rect.x = currentFrame * offsetX;
+	//			currentTime = 0.0f;
+	//			rect.width = -offsetX;
+	//		}
+	//	}
+	//	if (IsKeyDown(KeyboardKey::KEY_UP)) {
+	//		position.y -= moveSpeed * GetFrameTime();
+	//	}
+	//	if (IsKeyDown(KeyboardKey::KEY_DOWN)) {
+	//		position.y += moveSpeed * GetFrameTime();
+	//	}
+	//}
 
 	//DrawTexture(myTexture, position.x,position.y,WHITE);
-	DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
+	//DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
 
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	return isStopped;

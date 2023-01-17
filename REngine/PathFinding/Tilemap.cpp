@@ -21,12 +21,12 @@ void Tilemap::LoadTileMap(const char* tileMap, int tileSize) {
         stringstream ss(line);
         string line;
         while (ss >> line) {
-            mTileMap.push_back(stoi(line));
+            mTileMap.push_back((int)stoi(line));
             //cout << line << endl;
         }
     }
 
-    mGridBaseGrahp.initialize(mRows,mColumns);
+    mGridBaseGraph.initialize(mRows,mColumns);
 
     file.close();
 }
@@ -98,24 +98,36 @@ void Tilemap::Render() {
         }
         
 
-        int Xpos = 16;
+        /*int Xpos = 16;
         int Ypos = 16;
         int rt = 0;
         int ct = 0;
-        for(int i : mTileMap)
+        for(int i =0; i < mGridBaseGraph.GetColumns();i++)
         {
+            for (int j = 0; j < mGridBaseGraph.GetRows(); j++)
+            {
+                if (mGridBaseGraph.GetNode(j, i)->neighbors[2] != nullptr) {
+                    DrawLine(Xpos, Ypos, Xpos + 32, Ypos, BLACK);
+                    
+                }
+                cout << i <<" "<< j << endl;
+               
+            }   
+        }
+       for (int i : mTileMap) {
             if (mTileMap[i + 1] <= 5 && rt <= 48) {
-                DrawLine(Xpos, Ypos, Xpos+32, Ypos, WHITE);
+                DrawLine(Xpos, Ypos, Xpos + 32, Ypos, RED);
             }
-            if (mTileMap[i + 51] <= 5 && rt <= 50 && ct <= 26) {
-                DrawLine(Xpos, Ypos, Xpos, Ypos+32, WHITE);
+            if (mTileMap[i + 50] <= 5 && rt <= 50 && ct <= 26) {
+                DrawLine(Xpos, Ypos, Xpos, Ypos + 32, WHITE);
             }
-           if (mTileMap[i + 52] <= 5 && rt <= 48 && ct <= 26) {
-                DrawLine(Xpos, Ypos, Xpos+32, Ypos + 32, WHITE);
+            if (mTileMap[i + 51] <= 5 && rt <= 48 && ct <= 26) {
+                DrawLine(Xpos, Ypos, Xpos + 32, Ypos + 32, BLUE);
             }
-            if (mTileMap[i + 50] < 5 && rt > 0 && ct <= 26) {
-                DrawLine(Xpos, Ypos, Xpos - 32, Ypos + 32, WHITE);
+            if (mTileMap[i + 49] < 5 && rt > 0 && ct <= 26) {
+                DrawLine(Xpos, Ypos, Xpos - 32, Ypos + 32, GREEN);
             }
+            
             Xpos += 32;
             rt++;
             if (rt ==50) {
@@ -124,7 +136,7 @@ void Tilemap::Render() {
                 rt = 0;
                 ct++;
             }
-        }
+        }*/
     }
 }
 

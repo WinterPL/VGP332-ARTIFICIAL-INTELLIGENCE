@@ -16,8 +16,9 @@ private:
 	std::vector<int> mTileMap = {};
 	std::vector<pair<Texture2D,int>> mTileMapTextures;
 
-	AI::GridBaseGraph mGridBaseGrahp;
+	AI::GridBaseGraph mGridBaseGraph;
 
+	bool done = true;
 	int mRows;
 	int mColumns;
 	int mTileSize;
