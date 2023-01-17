@@ -7,7 +7,7 @@ using namespace std;
 class Tilemap
 {
 public :
-	void LoadTileMap(const char* tileMap, int tileSize);
+	void LoadTileMap(const char* tileMap);
 	void LoadTiles(const char* tilepath);
 	void Render();
 	void cleanup();

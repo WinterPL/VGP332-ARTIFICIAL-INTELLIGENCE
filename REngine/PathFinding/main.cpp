@@ -18,7 +18,7 @@ using namespace REng;
 Tilemap myTileMap;
 
 void GameInit() {
-	std::string fullpath;
+	{std::string fullpath;
 	REng::ResourcesFullPath("hero_spritesheet.png", fullpath);
 	rect.x = 0.0f;
 	rect.y = offsetY;
@@ -26,8 +26,9 @@ void GameInit() {
 	rect.height = offsetY;
 
 	myTexture = LoadTexture(fullpath.c_str());
+	}
 
-	myTileMap.LoadTileMap("tilemap.txt", 32);
+	myTileMap.LoadTileMap("tilemap.txt");
 	myTileMap.LoadTiles("tiles.txt");
 }
 
