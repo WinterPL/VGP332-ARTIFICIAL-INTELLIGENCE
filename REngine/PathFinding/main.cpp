@@ -30,6 +30,7 @@ void GameInit()
 
 	myTileMap.LoadTiles("tiles.txt");
 	myTileMap.LoadTileMap("tilemap.txt");
+	//myTileMap.LoadTileMap("FANCY.txt");
 }
 
 bool GameUpdate()

@@ -21,13 +21,28 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	std::getline(file, line, ' ');
 	std::getline(file, line);
 	mRows = atoi(line.c_str());
-	//cout << mRows << endl;
 
-	std::getline(file, line, ' ');
+	std::getline(file, line,' ');
 	std::getline(file, line);
 	mColumns = atoi(line.c_str());
-	//cout << mColumns << endl;
 
+	/*while (std::getline(file, line) && line != "")
+	{
+		std::string lineString = line;
+		while (!lineString.empty())
+		{
+			size_t pos = lineString.find(" ");
+			std::string tileValue = lineString.substr(0, pos);
+			size_t prevSize = lineString.size();
+			lineString = lineString.substr(pos + 1);
+			size_t newSize = lineString.size();
+			mTileMap.push_back(atoi(tileValue.c_str()));
+			if (prevSize == newSize)
+			{
+				break;
+			}
+		}
+	}*/
 	for (int i = 0; i < mColumns; i++) {
 		getline(file, line);
 		stringstream ss(line);
@@ -41,34 +56,36 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	file.close();
 	assert(static_cast<int>(mTileMap.size()) == mRows * mColumns);
 
-	mGridBaseGraph.Initialize(mRows, mColumns);
+	mGridBaseGraph.Initialize(mRows,mColumns);
 
 	auto GetNeighbor = [&](int x, int y) -> GridBaseGraph::Node*
 	{
 		auto node = mGridBaseGraph.GetNode(x, y);
 
-		if (node == nullptr) { return nullptr; }
-		if (IsBlocked(x, y)) { return nullptr; }
+		if (node == nullptr)
+			return nullptr;
+
+		if (IsBlocked(x, y))
+			return nullptr;
 
 		return node;
 	};
 
 
-	for (int y = 0; y < mColumns; ++y)
+	for (int y = 0; y < mColumns; y++)
 	{
-		for (int x = 0; x < mRows; ++x)
+		for (int x = 0; x < mRows; x++)
 		{
-			//auto currentTile = mTileMap[mTileMap[ToIndex(x, y, mColumns)]];
 			if (!IsBlocked(x, y))
 			{
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::East] = GetNeighbor(x + 1, y);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::West] = GetNeighbor(x - 1, y);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::North] = GetNeighbor(x, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::South] = GetNeighbor(x, y + 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::NorthEast] = GetNeighbor(x + 1, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::NorthWest] = GetNeighbor(x - 1, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::SouthEast] = GetNeighbor(x + 1, y + 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[(int)GridBaseGraph::SouthWest] = GetNeighbor(x - 1, y + 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::East] = GetNeighbor(x + 1, y);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::West] = GetNeighbor(x - 1, y);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::North] = GetNeighbor(x, y - 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::South] = GetNeighbor(x, y + 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthEast] = GetNeighbor(x + 1, y - 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthWest] = GetNeighbor(x - 1, y - 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthEast] = GetNeighbor(x + 1, y + 1);
+				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthWest] = GetNeighbor(x - 1, y + 1);
 			}
 		}
 	}
@@ -76,11 +93,7 @@ void Tilemap::LoadTileMap(const char* tileMap)
 
 REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y) const
 {
-	return
-	{
-		(x + 0.5f) * 32,
-		(y + 0.5f) * 32
-	};
+	return{(x + 0.5f) * 32,(y + 0.5f) * 32};
 }
 
 std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int endX, int endY)
@@ -108,7 +121,6 @@ std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int e
 	return path;
 }
 
-
 void Tilemap::LoadTiles(const char* tilesPath)
 {
 	//Implement this
@@ -117,11 +129,14 @@ void Tilemap::LoadTiles(const char* tilesPath)
 	assert(file.is_open(), "File does not exist!");
 
 	std::string line;
+	std::string value;
 
-	std::getline(file, line, ' ');
-	std::getline(file, line);
+	std::getline(file, line); //Read from file
+	std::stringstream sStreamRows(line);
+	std::getline(sStreamRows, value, ' ');
+	std::getline(sStreamRows, value, '\n');
 
-	int numberOfTiles = atoi(line.c_str());
+	int numberOfTiles = atoi(value.c_str());
 	for (int i = 0; i < numberOfTiles; ++i)
 	{
 		std::getline(file, line);
@@ -150,42 +165,46 @@ void Tilemap::LoadTiles(const char* tilesPath)
 void Tilemap::Render()
 {
 	REng::Math::Vector2 position(0.0f, 0.0f);
-	int i = 0;
-	for (int y = 0; y < mColumns; y++)
+
+	for(int y = 0; y < mColumns; ++y)
 	{
-		for (int x = 0; x < mRows; x++)
+		for (int x = 0; x < mRows; ++x)
 		{
-				DrawTexture(mTileTexture[mTileMap[i]].texture, static_cast<int>(position.x), static_cast<int>(position.y), WHITE);
+			int tileIndex = mTileMap[ToIndex(x, y, mRows)];
+				DrawTexture(mTileTexture[tileIndex].texture, static_cast<int>(position.x), static_cast<int>(position.y), WHITE);
 			position.x += 32;
-			i++;
 		}
 		position.x = 0.0f;
 		position.y += 32;
 	}
 
-
 	const int tileSize = 32;
-
-	float sX = 16;
-	float sY = 16;
-	for (int y = 0; y < mColumns; ++y)
+	REng::Math::Vector2 startingPosition(16,16);
+	float sX = startingPosition.x;
+	float sY = startingPosition.y;
+	for (int y = 0; y < mColumns; y++)
 	{
-		for (int x = 0; x < mRows; ++x)
+		for (int x = 0; x < mRows; x++)
 		{
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::East]) { DrawLine((int)sX, (int)sY, (int)(sX + tileSize), (int)sY, BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::West]) { DrawLine((int)sX, (int)sY, (int)(sX - tileSize), (int)sY, BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::North]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY - tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::South]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY + tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + tileSize), (int)(sY - tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - tileSize), (int)(sY - tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + tileSize), (int)(sY + tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - tileSize), (int)(sY + tileSize), BLACK); }
-			sX += tileSize;
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::East]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)sY, BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::West]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)sY, BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::North]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::South]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY + (float)tileSize), BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
+			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
+			sX += 32;
 		}
-		sX = 16;
+		sX = static_cast<float>(tileSize) * 0.5f;
 		sY += tileSize;
 	}
 
+}
+
+bool Tilemap::IsBlocked(int x, int y) const
+{
+	return mTileTexture[mTileMap[ToIndex(x, y, mRows)]].weight >= 5;
 }
 
 void Tilemap::cleanup() {
@@ -193,10 +212,4 @@ void Tilemap::cleanup() {
 	{
 		UnloadTexture(tt.texture);
 	}
-}
-
-
-bool Tilemap::IsBlocked(int x, int y) const
-{
-	return mTileTexture[mTileMap[ToIndex(x, y, mColumns)]].weight >= 5;
 }

@@ -162,6 +162,7 @@
     <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="FANCY.txt" />
     <Text Include="tilemap.txt" />
     <Text Include="tiles.txt" />
   </ItemGroup>

@@ -10,5 +10,6 @@
   <ItemGroup>
     <Text Include="tiles.txt" />
     <Text Include="tilemap.txt" />
+    <Text Include="FANCY.txt" />
   </ItemGroup>
 </Project>
