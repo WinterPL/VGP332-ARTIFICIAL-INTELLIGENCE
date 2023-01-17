@@ -6,12 +6,12 @@ namespace AI {
 	{
 		mRows = x;
 		mColumns = y;
-		mNodes.resize(mColumns * mRows);
+		mNodes.resize(mColumns*mRows);
 
 		for (int y = 0; y < mColumns; ++y){
 			for (int x = 0; x < mRows; ++x){
-					mNodes[GetIndex(x, y)].column = x;
-					mNodes[GetIndex(x, y)].row = y;
+					mNodes[GetIndex(x, y)].column = y;
+					mNodes[GetIndex(x, y)].row = x;
 			}
 		}
 	}
@@ -28,7 +28,7 @@ namespace AI {
 
 	GridBaseGraph::Node* GridBaseGraph::GetNode(int x, int y)
 	{
-		if (x < 0 || x >= mColumns || y < 0 || y >= mRows)
+		if (x < 0 || x >= mRows || y < 0 || y >= mColumns)
 		{
 			return nullptr;
 		}
@@ -38,7 +38,7 @@ namespace AI {
 
 	const GridBaseGraph::Node* GridBaseGraph::GetNode(int x, int y) const
 	{
-		if (x < 0 || x >= mColumns || y < 0 || y >= mRows)
+		if (x < 0 || x >= mRows || y < 0 || y >= mColumns)
 		{
 			return nullptr;
 		}
