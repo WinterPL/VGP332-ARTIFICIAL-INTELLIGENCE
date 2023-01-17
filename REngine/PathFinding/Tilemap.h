@@ -1,31 +1,35 @@
 #pragma once
+
 #include <REngine.h>
 #include "AI.h"
-
 using namespace std;
-using namespace AI;
 
 class Tilemap
 {
-public :
+public:
+	struct Tile
+	{
+		Texture2D texture;
+		int weight;
+	};
+
 	void LoadTileMap(const char* tileMap);
-	void LoadTiles(const char* tilepath);
+	void LoadTiles(const char* tilesPath);
 	void Render();
 	void cleanup();
 
-	bool IsBlock(int x, int y) const;
+	bool IsBlocked(int x, int y) const;
 
 	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY);
+
 private:
 	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
-	std::vector<int> mTileMap = {};
-	std::vector<pair<Texture2D,int>> mTileMapTextures;
+
+	std::vector<int> mTileMap;
+	std::vector<Tile> mTileTexture;
 
 	AI::GridBaseGraph mGridBaseGraph;
-
-	bool done = true;
+	AI::NodeList mClosedList;
 	int mRows;
 	int mColumns;
-	int mTileSize = 32;
 };
-

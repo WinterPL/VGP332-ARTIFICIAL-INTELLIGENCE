@@ -1,8 +1,7 @@
-#include <iostream>
 #include <REngine.h>
 #include "Tilemap.h"
 
-REng::Math::Vector2 position(0.0f,0.);
+REng::Math::Vector2 position(0.0f, 0.);
 Texture2D myTexture;
 Rectangle rect;
 float offsetY = 94;
@@ -17,7 +16,8 @@ using namespace REng;
 
 Tilemap myTileMap;
 
-void GameInit() {
+void GameInit()
+{
 	/*{std::string fullpath;
 	REng::ResourcesFullPath("hero_spritesheet.png", fullpath);
 	rect.x = 0.0f;
@@ -28,13 +28,13 @@ void GameInit() {
 	myTexture = LoadTexture(fullpath.c_str());
 	}*/
 
-	myTileMap.LoadTileMap("tilemap.txt");
 	myTileMap.LoadTiles("tiles.txt");
+	myTileMap.LoadTileMap("tilemap.txt");
 }
 
-bool GameUpdate() {
+bool GameUpdate()
+{
 	myTileMap.Render();
-
 	//{//movement
 	//	float moveSpeed = 200.0f;
 	//	if (IsKeyDown(KeyboardKey::KEY_RIGHT)) {
@@ -69,59 +69,28 @@ bool GameUpdate() {
 	//DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
 
 
-
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	return isStopped;
 }
 
-void GameCleanup() {
-	UnloadTexture(myTexture);
+void GameCleanup()
+{
 	myTileMap.cleanup();
 }
 
-void RenderDebugUI() {
+void RenderDebugUI()
+{
 	//ImGui::ShowDemoWindow();
 	//ImGui::Begin("myimguiWindow");
 	//ImGui::End();
 }
 
-
-int main() {
-	REng::Start("MyPathFinding");
+int main()
+{
+	REng::Start("MyPathfinding");
 	GameInit();
-	REng::Run(GameUpdate,RenderDebugUI);
+	REng::Run(GameUpdate, RenderDebugUI);
 	GameCleanup();
 	REng::Stop();
 	return 0;
 }
-
-//void GameStart()
-//{
-//
-//}
-//
-//bool GameUpdate()
-//{
-//	bool exit = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
-//	return exit;
-//}
-//
-////Cleanup
-//void GameStop()
-//{
-//
-//}
-//
-//void GameUIRender()
-//{
-//	ImGui::Begin("Hello World");
-//	ImGui::End();
-//}
-//
-//int main()
-//{
-//	REng::Start("MyWindow", 1600, 900);
-//	REng::Run(GameUpdate, GameUIRender);
-//	REng::Stop();
-//}
-//DrawTexture(myTexture, position.x,position.y,WHITE);
