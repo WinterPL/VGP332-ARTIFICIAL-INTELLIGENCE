@@ -14,7 +14,7 @@ public:
 		int weight;
 	};
 
-	enum search {
+	enum class search {
 		DfS,
 		BfS
 	};
