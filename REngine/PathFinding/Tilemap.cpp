@@ -96,27 +96,47 @@ REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y) const
 	return{(x + 0.5f) * 32,(y + 0.5f) * 32};
 }
 
-std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int endX, int endY)
+std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 {
 	std::vector<REng::Math::Vector2> path;
 	NodeList closedList;
-
-	BFS bfs;
-	if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY))
-	{
-		closedList = bfs.GetClosedList();
-		auto node = closedList.back();
-		while (node != nullptr)
+	if (type == search::BfS) {
+		BFS bfs;
+		if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY))
 		{
-			path.push_back(GetPixelPosition(node->column, node->row));
-			node = node->parent;
+			closedList = bfs.GetClosedList();
+			auto node = closedList.back();
+			while (node != nullptr)
+			{
+				path.push_back(GetPixelPosition(node->row, node->column));
+				node = node->parent;
+			}
+			std::reverse(path.begin(), path.end());
 		}
-		std::reverse(path.begin(), path.end());
+		else
+		{
+			mClosedList = bfs.GetClosedList();
+		}
 	}
-	else
-	{
-		mClosedList = bfs.GetClosedList();
+	else if (type == search::DfS) {
+		DFS dfs;
+		if (dfs.Run(mGridBaseGraph, startX, startY, endX, endY))
+		{
+			closedList = dfs.GetClosedList();
+			auto node = closedList.back();
+			while (node != nullptr)
+			{
+				path.push_back(GetPixelPosition(node->row, node->column));
+				node = node->parent;
+			}
+			std::reverse(path.begin(), path.end());
+		}
+		else
+		{
+			mClosedList = dfs.GetClosedList();
+		}
 	}
+	
 
 	return path;
 }
@@ -199,6 +219,11 @@ void Tilemap::Render()
 		sX = static_cast<float>(tileSize) * 0.5f;
 		sY += tileSize;
 	}
+
+
+	/*for (auto node: mClosedList) {
+		DrawLine(node, node->parent);
+	}*/
 
 }
 

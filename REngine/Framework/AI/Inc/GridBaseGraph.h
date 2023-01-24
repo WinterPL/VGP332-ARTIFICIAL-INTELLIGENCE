@@ -26,7 +26,6 @@ namespace AI
 			//Search parameters for pathfinding
 			Node* parent = nullptr;
 			bool opened = false;
-			bool closed = false;
 		};
 
 		void Initialize(int x, int y);

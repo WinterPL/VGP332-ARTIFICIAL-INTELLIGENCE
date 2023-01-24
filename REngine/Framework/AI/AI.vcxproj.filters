@@ -30,6 +30,9 @@
     <ClInclude Include="Inc\BFS.h">
       <Filter>Inc\PathFinding</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\DFS.h">
+      <Filter>Inc\PathFinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -39,6 +42,9 @@
       <Filter>Src\PathFinding</Filter>
     </ClCompile>
     <ClCompile Include="Src\BFS.cpp">
+      <Filter>Src\PathFinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\DFS.cpp">
       <Filter>Src\PathFinding</Filter>
     </ClCompile>
   </ItemGroup>

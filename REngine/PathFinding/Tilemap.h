@@ -14,6 +14,11 @@ public:
 		int weight;
 	};
 
+	enum search {
+		DfS,
+		BfS
+	};
+
 	void LoadTileMap(const char* tileMap);
 	void LoadTiles(const char* tilesPath);
 	void Render();
@@ -21,7 +26,7 @@ public:
 
 	bool IsBlocked(int x, int y) const;
 
-	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY);
+	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY, search type);
 
 private:
 	REng::Math::Vector2 GetPixelPosition(int x, int y) const;

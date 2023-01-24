@@ -3,7 +3,6 @@
 
 using namespace AI;
 
-
 bool BFS::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY)
 {
 	//Reset everything
@@ -27,5 +26,35 @@ bool BFS::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY)
 	//				if expanded node isn't in open list nor closed list
 	//					add expanded node to open list, set parent
 	//			Add node N to closed list
-	return 0;
+	while (!mOpenList.empty() && !found)
+	{
+		/*auto currentNode = mOpenList.front();
+		mOpenList.pop_front();
+		if (currentNode->row == endX && currentNode->column == endY) {
+			found = true;
+		}
+		else {
+			for (auto neighbore : currentNode->neighbors) {
+				if (neighbore != nullptr && !neighbore->opened && !neighbore->closed) {
+					neighbore->parent = currentNode;
+					neighbore->closed = true;
+				}
+			}
+		}
+		currentNode->closed = true;
+		mClosedList.push_back(currentNode);*/
+
+		//--Another
+		mClosedList.push_back(mOpenList.front());
+		for (const auto& neighbore : mOpenList.front()->neighbors) {
+			if (!neighbore || neighbore->opened)continue;
+			neighbore->opened = true;
+			neighbore->parent = mOpenList.front();
+			mOpenList.push_back(neighbore);
+		}
+		mOpenList.pop_front();
+		found = ((mClosedList.back()->row == endX) && (mClosedList.back()->column == endY));
+	}
+	return found;
+
 }
