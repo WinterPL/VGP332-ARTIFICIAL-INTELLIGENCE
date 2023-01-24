@@ -3,12 +3,13 @@
 #include <assert.h>
 #include <imgui.h>
 #include <iostream>
+#include <functional>
+#include <fstream>
 #include <math.h>
 #include <raylib.h>
 #include <string>
-#include <vector>
-#include <fstream>
 #include <sstream>
+#include <vector>
 
 #include <rlgl.h>
 #ifdef PLATFORM_DESKTOP

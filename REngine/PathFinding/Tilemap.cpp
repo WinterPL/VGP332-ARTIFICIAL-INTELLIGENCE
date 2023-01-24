@@ -146,20 +146,24 @@ std::vector<REng::Math::Vector2> Tilemap::FindDijikstra(int startX, int startY, 
 	NodeList closedList;
 
 	Dijkstra dijkstra;
-	auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA) {
+	auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA)
+	{
 		return GetCost(nodeA);
 	};
 
-	if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY,getCostWrapper)) {
+	if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY, getCostWrapper))
+	{
 		closedList = dijkstra.GetClosedList();
 		auto node = closedList.back();
-		while (node != nullptr) {
-			path.push_back(GetPixelPosition(node->row, node->column));
-			node->parent;
+		while (node != nullptr)
+		{
+			path.push_back(GetPixelPosition(node->column, node->row));
+			node = node->parent;
 		}
 		std::reverse(path.begin(), path.end());
 	}
-	else {
+	else
+	{
 		mClosedList = dijkstra.GetClosedList();
 	}
 
@@ -252,8 +256,9 @@ void Tilemap::Render()
 	}
 
 
-	/*for (auto node: mClosedList) {
-		DrawLine(node, node->parent);
+	/*for (mClosedList)
+	{
+		DrawLine(mClosedList[i], mClosedList[i].parent)
 	}*/
 
 }
