@@ -28,6 +28,8 @@ namespace AI {
 		{
 			node.parent = nullptr;
 			node.opened = false;
+			node.g = 0.0f;
+			node.h = 0.0f;
 		}
 	}
 

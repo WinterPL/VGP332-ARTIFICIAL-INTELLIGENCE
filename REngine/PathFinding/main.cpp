@@ -69,6 +69,7 @@ bool GameUpdate()
 	//}
 	//DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);
 
+
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	return isStopped;
 }

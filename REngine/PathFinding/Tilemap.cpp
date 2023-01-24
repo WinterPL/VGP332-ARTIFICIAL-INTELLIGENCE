@@ -4,9 +4,9 @@ using namespace AI;
 
 namespace
 {
-	inline int ToIndex(int x, int y, int columns)
+	inline int ToIndex(int x, int y, int rows)
 	{
-		return x + (y * columns);
+		return x + (y * rows);
 	}
 }
 
@@ -140,6 +140,37 @@ std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int e
 
 	return path;
 }
+
+std::vector<REng::Math::Vector2> Tilemap::FindDijikstra(int startX, int startY, int endX, int endY) {
+	std::vector<REng::Math::Vector2> path;
+	NodeList closedList;
+
+	Dijkstra dijkstra;
+	auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA) {
+		return GetCost(nodeA);
+	};
+
+	if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY,getCostWrapper)) {
+		closedList = dijkstra.GetClosedList();
+		auto node = closedList.back();
+		while (node != nullptr) {
+			path.push_back(GetPixelPosition(node->row, node->column));
+			node->parent;
+		}
+		std::reverse(path.begin(), path.end());
+	}
+	else {
+		mClosedList = dijkstra.GetClosedList();
+	}
+
+	return path;
+}
+
+float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const{
+	const int tileIndex = ToIndex(nodeA->row, nodeA->column, mRows);
+	return mTileTexture[mTileMap[tileIndex]].weight;
+}
+
 
 void Tilemap::LoadTiles(const char* tilesPath)
 {

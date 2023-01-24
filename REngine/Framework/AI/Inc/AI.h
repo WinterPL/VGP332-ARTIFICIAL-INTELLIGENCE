@@ -3,3 +3,4 @@
 #include "GridBaseGraph.h"
 #include "BFS.h"
 #include "DFS.h"
+#include "Dijkstra.h"

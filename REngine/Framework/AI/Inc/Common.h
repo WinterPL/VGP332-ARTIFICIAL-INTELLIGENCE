@@ -5,3 +5,4 @@
 #include <array>
 #include <list>
 #include <stack>
+#include <functional>
