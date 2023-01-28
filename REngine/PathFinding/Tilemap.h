@@ -16,7 +16,9 @@ public:
 
 	enum class search {
 		DfS,
-		BfS
+		BfS,
+		Dijikstra,
+		AsTAR
 	};
 
 	void LoadTileMap(const char* tileMap);

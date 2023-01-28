@@ -30,6 +30,7 @@ void GameInit()
 
 	myTileMap.LoadTiles("tiles.txt");
 	myTileMap.LoadTileMap("tilemap.txt");
+	myTileMap.FindPath(10,10,15,5,Tilemap::search::BfS);
 	//myTileMap.LoadTileMap("FANCY.txt");
 }
 
