@@ -98,6 +98,7 @@ REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y) const
 
 std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 {
+	startpX = startX; startpY = startY; endpX = endX; endpY = endY;
 	std::vector<REng::Math::Vector2> path;
 	NodeList closedList;
 
@@ -172,9 +173,6 @@ std::vector<REng::Math::Vector2> Tilemap::FindPath(int startX, int startY, int e
 	return path;
 }
 
-std::vector<REng::Math::Vector2> Tilemap::FindDijikstra(int startX, int startY, int endX, int endY) {
-	
-}
 
 float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const{
 	const int tileIndex = ToIndex(nodeA->row, nodeA->column, mRows);
@@ -262,13 +260,22 @@ void Tilemap::Render()
 	}
 
 
-	for (auto i : mClosedList)
+	for (auto& i : mClosedList)
 	{
+		cout << i->row << ", " << i->column << endl;
 		if(i->parent != nullptr)
 		{
-		DrawLine(i->row, i->column, i->parent->row, i->parent->column, RED);
+			REng::Math::Vector2 startP = GetPixelPosition(i->row, i->column);
+			REng::Math::Vector2 endP = GetPixelPosition(i->parent->row, i->parent->column);
+			DrawLine(startP.x,startP.y ,endP.x ,endP.y , PINK);
 		}
 	}
+
+
+	REng::Math::Vector2 startP = GetPixelPosition(startpX, startpY);
+	REng::Math::Vector2 endP = GetPixelPosition(endpX, endpY);
+	DrawCircle(startP.x, startP.y, 10.0f, GREEN);
+	DrawCircle(endP.x, endP.y, 10.0f, RED);
 
 }
 
@@ -283,3 +290,4 @@ void Tilemap::cleanup() {
 		UnloadTexture(tt.texture);
 	}
 }
+

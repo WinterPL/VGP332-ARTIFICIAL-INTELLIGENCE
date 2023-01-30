@@ -1,20 +1,22 @@
 #include <REngine.h>
 #include "Tilemap.h"
 
-REng::Math::Vector2 position(0.0f, 0.);
-Texture2D myTexture;
-Rectangle rect;
-float offsetY = 94;
-float offsetX = 80;
-int frame = 6;
-int currentFrame = 0;
-
-float animMaxTime = 0.1f;
-float currentTime = 0.0f;
+//REng::Math::Vector2 position(0.0f, 0.);
+//Texture2D myTexture;
+//Rectangle rect;
+//float offsetY = 94;
+//float offsetX = 80;
+//int frame = 6;
+//int currentFrame = 0;
+//
+//float animMaxTime = 0.1f;
+//float currentTime = 0.0f;
 
 using namespace REng;
 
 Tilemap myTileMap;
+
+int startX = 10, startY = 10; int endX = 15, endY = 5;
 
 void GameInit()
 {
@@ -30,7 +32,7 @@ void GameInit()
 
 	myTileMap.LoadTiles("tiles.txt");
 	myTileMap.LoadTileMap("tilemap.txt");
-	myTileMap.FindPath(10,10,15,5,Tilemap::search::BfS);
+	myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::BfS);
 	//myTileMap.LoadTileMap("FANCY.txt");
 }
 

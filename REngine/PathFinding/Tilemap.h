@@ -29,9 +29,10 @@ public:
 	bool IsBlocked(int x, int y) const;
 
 	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY, search type);
-	std::vector<REng::Math::Vector2> FindDijikstra(int startX, int startY, int endX, int endY);
 
 	float GetCost(const AI::GridBaseGraph::Node* nodeA) const;
+
+
 private:
 	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
 
@@ -42,4 +43,6 @@ private:
 	AI::NodeList mClosedList;
 	int mRows;
 	int mColumns;
+
+	int startpX, startpY, endpX, endpY;
 };
