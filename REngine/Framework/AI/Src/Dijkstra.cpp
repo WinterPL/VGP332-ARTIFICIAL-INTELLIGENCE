@@ -40,20 +40,24 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 						//For Dijkstra just g-> Need to sort the open list -> for ASTAR related to g + h
 						//Or
 						//insert sorted
-					mOpenList.push_back(node);
-					
+					mOpenList.push_back(neighbore);
+					mOpenList.sort([](GridBaseGraph::Node* lhs, GridBaseGraph::Node* rhs) {return lhs->g < rhs->g; });		
 				}
-				/*else if (newCost is cheaper)
+				else if (neighbore->g > (currentNode->g + getCost(neighbore)))
 				{
+					neighbore->parent = currentNode;
+					neighbore->g = currentNode->g + getCost(neighbore);
+
 					// Do the edge relaxation
 					//	update the parent
 					//	use a newg that is cheaper
 					//	resort the open list (For ASTAR you need to consider g + h)
 					//	Heuristics in this case don't change! ->ASTAR
-				}*/
+					mOpenList.sort([](GridBaseGraph::Node* lhs, GridBaseGraph::Node* rhs) {return lhs->g < rhs->g; });
+				}
 			}
 		}
-
+		mClosedList.push_back(currentNode);
 	}
 	return found;
 
