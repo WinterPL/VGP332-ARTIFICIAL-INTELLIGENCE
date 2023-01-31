@@ -42,6 +42,7 @@ bool Astar::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY
 					neighbor->h = getH(neighbor, graph.GetNode(endX, endY));
 
 
+					currentNode->g = getCost(currentNode);
 					// TODO
 					// Set the cost g
 					//

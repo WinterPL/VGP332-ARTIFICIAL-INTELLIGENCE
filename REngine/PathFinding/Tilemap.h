@@ -27,8 +27,7 @@ public:
 	void cleanup();
 
 	bool IsBlocked(int x, int y) const;
-
-	std::vector<REng::Math::Vector2> FindPath(int startX, int startY, int endX, int endY, search type);
+	void FindPath(int startX, int startY, int endX, int endY, search type);
 
 	float GetCost(const AI::GridBaseGraph::Node* nodeA) const;
 
@@ -45,4 +44,5 @@ private:
 	int mColumns;
 
 	int startpX, startpY, endpX, endpY;
+	std::vector<REng::Math::Vector2> path;
 };

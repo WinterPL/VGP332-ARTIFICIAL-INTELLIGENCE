@@ -4,3 +4,4 @@
 #include "BFS.h"
 #include "DFS.h"
 #include "Dijkstra.h"
+#include "Astar.h"

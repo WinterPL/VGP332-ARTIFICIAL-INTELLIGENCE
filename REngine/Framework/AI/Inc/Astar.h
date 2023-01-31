@@ -7,7 +7,7 @@ namespace AI
 	using NodeList = std::list<GridBaseGraph::Node*>;
 	using GetCost = std::function<float(const GridBaseGraph::Node*)>;
 	using GetHeuristics = std::function<float(const GridBaseGraph::Node*, const GridBaseGraph::Node*)>;
-		class Astar
+	class Astar
 	{
 	public:
 		bool Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost, GetHeuristics getHeuristics);

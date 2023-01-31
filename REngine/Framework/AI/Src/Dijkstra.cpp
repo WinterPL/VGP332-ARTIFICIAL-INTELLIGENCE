@@ -16,6 +16,7 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 	node->opened = true;
 
 	bool found = false;
+	int cost;
 
 	while (!mOpenList.empty() && !found)
 	{
@@ -30,6 +31,8 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 				if (!neighbore->opened) {
 					neighbore->opened = true;
 					neighbore->parent = currentNode;
+
+					currentNode->g = getCost(currentNode);
 					// TODO
 						// Set the cost g
 						//
@@ -37,6 +40,8 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 						//For Dijkstra just g-> Need to sort the open list -> for ASTAR related to g + h
 						//Or
 						//insert sorted
+					mOpenList.push_back(node);
+					
 				}
 				/*else if (newCost is cheaper)
 				{
