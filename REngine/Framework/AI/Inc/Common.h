@@ -6,3 +6,4 @@
 #include <list>
 #include <stack>
 #include <functional>
+#include <assert.h>

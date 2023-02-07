@@ -32,8 +32,8 @@ void GameInit()
 
 	myTileMap.LoadTiles("tiles.txt");
 	myTileMap.LoadTileMap("tilemap.txt");
-	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::BfS);
-	myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::DfS);
+	myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::BfS);
+	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::DfS);
 	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::Dijikstra);
 	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::AsTAR);
 	//myTileMap.LoadTileMap("FANCY.txt");

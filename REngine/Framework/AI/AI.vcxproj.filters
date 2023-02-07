@@ -13,6 +13,12 @@
     <Filter Include="Src\PathFinding">
       <UniqueIdentifier>{da59ccb1-c2fb-44a7-b76f-4c298d18077f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\World">
+      <UniqueIdentifier>{40061bb3-758d-45bb-b98f-6459ad788266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\World">
+      <UniqueIdentifier>{64690517-539d-4e14-a0bb-5895e9306255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\AI.h">
@@ -39,6 +45,12 @@
     <ClInclude Include="Inc\Astar.h">
       <Filter>Inc\PathFinding</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Entity.h">
+      <Filter>Inc\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AIWorld.h">
+      <Filter>Inc\World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -58,6 +70,12 @@
     </ClCompile>
     <ClCompile Include="Src\Astar.cpp">
       <Filter>Src\PathFinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Entity.cpp">
+      <Filter>Src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\AIWorld.cpp">
+      <Filter>Src\World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
