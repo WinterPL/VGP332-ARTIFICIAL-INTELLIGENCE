@@ -13,6 +13,7 @@ void Brain::Load()
 
 void Brain::Unload()
 {
+	UnloadTexture(mTexture);
 }
 
 void Brain::Update(float deltaTime)
@@ -20,5 +21,5 @@ void Brain::Update(float deltaTime)
 
 void Brain::Render()
 {
-	DrawTexture(mTexture, position.x - mTexture.width * 0.5f, position.y - mTexture.height * 0.5f, WHITE);
+	DrawTexture(mTexture, (int)position.x - mTexture.width * 0.5f, (int)position.y - mTexture.height * 0.5f, WHITE);
 }

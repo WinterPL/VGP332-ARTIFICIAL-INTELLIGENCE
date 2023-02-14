@@ -10,7 +10,7 @@ namespace
 	std::unique_ptr<Zombie> zombie;
 	std::vector<std::unique_ptr<Brain>> brains;
 
-	const int maxNumberOfBrains = 10;
+	const int maxNumberOfBrains = 12;
 	int currentNumberOfBrains = 10;
 }
 
@@ -61,7 +61,11 @@ bool GameUpdate()
 
 void GameCleanup()
 {
-
+	for (auto& brain : brains)
+	{
+		brain->Unload();
+	}
+	zombie->Unload();
 }
 
 void RenderDebugUI()

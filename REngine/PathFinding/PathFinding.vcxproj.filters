@@ -8,7 +8,19 @@
     <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="tilemap.txt" />
-    <Text Include="tiles.txt" />
+    <Text Include="FANCY.txt">
+      <Filter>TXT file</Filter>
+    </Text>
+    <Text Include="tilemap.txt">
+      <Filter>TXT file</Filter>
+    </Text>
+    <Text Include="tiles.txt">
+      <Filter>TXT file</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TXT file">
+      <UniqueIdentifier>{d358d9c8-23a1-476c-8b35-97b0fac345e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

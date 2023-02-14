@@ -26,16 +26,15 @@ namespace AI
 			//Search parameters for pathfinding
 			Node* parent = nullptr;
 			bool opened = false;
-			bool closed = false;
 
-			//Dijkstra and A* info
+			//Dijkstra info
 			float g = 0.0f;
 
-			//A* info
+			//A*
 			float h = 0.0f;
 		};
-		
-		void Initialize(int columns, int rows);
+
+		void Initialize(int x, int y);
 		void ResetSearchParameters();
 
 

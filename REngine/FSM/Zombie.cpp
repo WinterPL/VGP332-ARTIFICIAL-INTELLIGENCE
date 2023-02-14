@@ -14,11 +14,14 @@ void Zombie::Load()
 	mStateMachine->AddState<ZombieIdle>();
 	mStateMachine->AddState<ZombieWander>();
 	mStateMachine->AddState<ZombieEat>();
-	mStateMachine->ChangeState(Idle);
+	mStateMachine->AddState<ZombieGohome>();
+	mStateMachine->AddState<ZombieStayhome>();
+	mStateMachine->ChangeState((int)State::Idle);
 
 	std::string zombiePath = REng::ResourcesFullPath("ZombieAnim.png");
-	Texture2D zombie = LoadTexture(zombiePath.c_str());
-	mZombieSpritesheet = zombie;
+	mZombieSpritesheet = LoadTexture(zombiePath.c_str());
+	std::string HomePath = REng::ResourcesFullPath("Bird.png");
+	mHomeSprite = LoadTexture(HomePath.c_str());
 
 	mTextureRect.x = 0.0f;
 	mTextureRect.y = 0.0f;
@@ -31,7 +34,7 @@ void Zombie::Load()
 
 void Zombie::Unload()
 {
-
+	UnloadTexture(mZombieSpritesheet);
 }
 
 void Zombie::Update(float deltaTime)
@@ -45,13 +48,15 @@ void Zombie::Render()
 	float halfHeight = mTextureRect.height * 0.5f;
 
 	DrawTextureRec(mZombieSpritesheet, mTextureRect, { position.x - halfWidth, position.y - halfHeight }, WHITE);
-	DrawCircle(destination.x, destination.y, 6.0f, GREEN);
+	DrawTexture(mHomeSprite,(int)(Home.x - 32),(int)(Home.y -32),WHITE);
+	DrawCircle((int)destination.x, (int)destination.y, 6.0f, GREEN);
+	DrawCircle((int)Home.x, (int)Home.y, 6.0f, RED);
 }
 
 
 void Zombie::ChangeState(State state)
 {
-	mStateMachine->ChangeState(state);
+	mStateMachine->ChangeState((int)state);
 }
 
 void Zombie::UpdateAnimation(float deltaTime)

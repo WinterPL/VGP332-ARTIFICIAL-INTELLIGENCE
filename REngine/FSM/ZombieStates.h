@@ -29,7 +29,27 @@ public:
 	void Enter(Zombie& agent) override;
 	void Update(Zombie& agent, float deltaTime) override;
 	void Exit(Zombie& agent) override;
+	int num = 0;
 
 private:
 	Brain* mTarget;
+};
+
+class ZombieGohome : public AI::State<Zombie>
+{
+public:
+	void Enter(Zombie& agent) override;
+	void Update(Zombie& agent, float deltaTime) override;
+	void Exit(Zombie& agent) override;
+};
+
+class ZombieStayhome : public AI::State<Zombie>
+{
+public:
+	void Enter(Zombie& agent) override;
+	void Update(Zombie& agent, float deltaTime) override;
+	void Exit(Zombie& agent) override;
+
+private:
+	float mWaitTime = 0.0f;
 };
