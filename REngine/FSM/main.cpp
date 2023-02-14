@@ -31,9 +31,6 @@ void GameInit()
 bool GameUpdate()
 {
 	float deltaTime = GetFrameTime();
-	zombie->Update(deltaTime);
-	zombie->Render();
-
 
 	for (auto iter = brains.begin(); iter != brains.end();)
 	{
@@ -54,6 +51,9 @@ bool GameUpdate()
 		brain->Update(deltaTime);
 		brain->Render();
 	}
+
+	zombie->Update(deltaTime);
+	zombie->Render();
 
 	bool isStopped = IsKeyPressed(KeyboardKey::KEY_ESCAPE);
 	return isStopped;

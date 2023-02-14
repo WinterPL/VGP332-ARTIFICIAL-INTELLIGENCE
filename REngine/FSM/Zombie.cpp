@@ -47,10 +47,11 @@ void Zombie::Render()
 	float halfWidth = mTextureRect.width * 0.5f;
 	float halfHeight = mTextureRect.height * 0.5f;
 
-	DrawTextureRec(mZombieSpritesheet, mTextureRect, { position.x - halfWidth, position.y - halfHeight }, WHITE);
 	DrawTexture(mHomeSprite,(int)(Home.x - 32),(int)(Home.y -32),WHITE);
+	DrawText("Home", (int)(Home.x - 15.f) , (int)(Home.y - 40.f), 16, WHITE);
 	DrawCircle((int)destination.x, (int)destination.y, 6.0f, GREEN);
 	DrawCircle((int)Home.x, (int)Home.y, 6.0f, RED);
+	DrawTextureRec(mZombieSpritesheet, mTextureRect, { position.x - halfWidth, position.y - halfHeight }, WHITE);
 }
 
 
