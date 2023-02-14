@@ -1,3 +1,4 @@
+#include "pch.h"
 /**********************************************************************************************
 *
 *   raylibExtras * Utilities and Shared Components for Raylib
@@ -27,9 +28,7 @@
 *   SOFTWARE.
 *
 **********************************************************************************************/
-#include "Precompiled.h"
 #include "RayLibImGui.h"
-
 
 static Texture2D FontTexture;
 

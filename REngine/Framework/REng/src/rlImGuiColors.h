@@ -30,8 +30,6 @@
 
 #pragma once
 
-#include "Precompiled.h"
-
 namespace rlImGuiColors
 {
     inline ImVec4 Convert(::Color color)

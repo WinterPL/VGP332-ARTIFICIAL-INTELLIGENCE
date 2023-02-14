@@ -30,8 +30,6 @@
 
 #pragma once
 
-#include "Precompiled.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif

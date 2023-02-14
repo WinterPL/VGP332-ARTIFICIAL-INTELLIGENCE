@@ -2,22 +2,25 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Inc">
-      <UniqueIdentifier>{17ac21d8-431e-4205-8122-049fda54c31e}</UniqueIdentifier>
+      <UniqueIdentifier>{81ed95e4-5456-4997-bdb1-e95b82531b11}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src">
-      <UniqueIdentifier>{a3fd0014-d923-45a9-98ef-c4fd56f6807a}</UniqueIdentifier>
+      <UniqueIdentifier>{cbf41ee7-9993-4a1f-a17c-718c6ba06bd4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inc\PathFinding">
-      <UniqueIdentifier>{83362509-db0a-4e23-b1c9-6f001677b8d7}</UniqueIdentifier>
+    <Filter Include="Inc\Pathfinding">
+      <UniqueIdentifier>{8eab861f-4a84-4b59-8b21-23d03d243197}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\PathFinding">
-      <UniqueIdentifier>{da59ccb1-c2fb-44a7-b76f-4c298d18077f}</UniqueIdentifier>
+    <Filter Include="Src\Pathfinding">
+      <UniqueIdentifier>{3206ce26-a3be-4bd4-9dc3-544db4532a4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Inc\World">
-      <UniqueIdentifier>{40061bb3-758d-45bb-b98f-6459ad788266}</UniqueIdentifier>
+      <UniqueIdentifier>{759f5bf9-b6e5-44b5-9975-6cafd2c697d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\World">
-      <UniqueIdentifier>{64690517-539d-4e14-a0bb-5895e9306255}</UniqueIdentifier>
+      <UniqueIdentifier>{bcec2968-886a-4938-b350-46630b5bf3ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Inc\FSM">
+      <UniqueIdentifier>{778a0e5a-9c35-4b85-a963-be2746de247f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,20 +33,17 @@
     <ClInclude Include="Src\Precompiled.h">
       <Filter>Src</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Test.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\GridBaseGraph.h">
-      <Filter>Inc\PathFinding</Filter>
+      <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Inc\BFS.h">
-      <Filter>Inc\PathFinding</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\DFS.h">
-      <Filter>Inc\PathFinding</Filter>
+      <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Dijkstra.h">
-      <Filter>Inc\PathFinding</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Astar.h">
-      <Filter>Inc\PathFinding</Filter>
+      <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Entity.h">
       <Filter>Inc\World</Filter>
@@ -51,31 +51,52 @@
     <ClInclude Include="Inc\AIWorld.h">
       <Filter>Inc\World</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Agent.h">
+      <Filter>Inc\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\State.h">
+      <Filter>Inc\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\StateMachine.h">
+      <Filter>Inc\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Astar.h">
+      <Filter>Inc\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\DFS.h">
+      <Filter>Inc\Pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Test.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
     <ClCompile Include="Src\GridBaseGraph.cpp">
-      <Filter>Src\PathFinding</Filter>
+      <Filter>Src\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Src\BFS.cpp">
-      <Filter>Src\PathFinding</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\DFS.cpp">
-      <Filter>Src\PathFinding</Filter>
+      <Filter>Src\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Src\Dijkstra.cpp">
-      <Filter>Src\PathFinding</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Astar.cpp">
-      <Filter>Src\PathFinding</Filter>
+      <Filter>Src\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Src\Entity.cpp">
       <Filter>Src\World</Filter>
     </ClCompile>
     <ClCompile Include="Src\AIWorld.cpp">
       <Filter>Src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Agent.cpp">
+      <Filter>Src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Astar.cpp">
+      <Filter>Src\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\DFS.cpp">
+      <Filter>Src\Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include <REngine.h>
 #include "Tilemap.h"
 
-//REng::Math::Vector2 position(0.0f, 0.);
+//EMath::Vector2 position(0.0f, 0.);
 //Texture2D myTexture;
 //Rectangle rect;
 //float offsetY = 94;
@@ -32,7 +32,7 @@ void GameInit()
 
 	myTileMap.LoadTiles("tiles.txt");
 	myTileMap.LoadTileMap("tilemap.txt");
-	myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::BfS);
+	myTileMap.FindPath(startX, startY, endX, endY, Tilemap::search::BfS);
 	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::DfS);
 	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::Dijikstra);
 	//myTileMap.FindPath(startX, startY, endX, endY,Tilemap::search::AsTAR);

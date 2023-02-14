@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{998e4bbc-b8bf-4045-abdb-34dd57c2f5b7}</ProjectGuid>
-    <RootNamespace>PathFinding</RootNamespace>
+    <ProjectGuid>{34e94ed4-5acb-47db-8a4d-937b98ccaa1c}</ProjectGuid>
+    <RootNamespace>Pathfinding</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -86,13 +86,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Inc;$(ProjectDir)Src;$(SolutionDir)\FrameWork\AI\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework\AI\Inc;$(SolutionDir)Framework\EMath\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,7 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Inc;$(ProjectDir)Src;$(SolutionDir)\FrameWork\AI\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework\AI\Inc;$(SolutionDir)Framework\EMath\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Inc;$(ProjectDir)Src;$(SolutionDir)\FrameWork\AI\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework\AI\Inc;$(SolutionDir)Framework\EMath\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Inc;$(ProjectDir)Src;$(SolutionDir)\FrameWork\AI\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework\AI\Inc;$(SolutionDir)Framework\EMath\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\AI\AI.vcxproj">
-      <Project>{e94e9f24-67a1-42a1-a4a6-ea14509f08ea}</Project>
+      <Project>{425e0c3e-af52-4e94-bbe9-43481790064e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Framework\REng\REng.vcxproj">
       <Project>{4ae43ef3-c7ac-4c36-8ecb-36e394711bdb}</Project>
@@ -162,7 +165,6 @@
     <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="FANCY.txt" />
     <Text Include="tilemap.txt" />
     <Text Include="tiles.txt" />
   </ItemGroup>

@@ -33,7 +33,7 @@ public:
 
 
 private:
-	REng::Math::Vector2 GetPixelPosition(int x, int y) const;
+	EMath::Vector2 GetPixelPosition(int x, int y) const;
 
 	std::vector<int> mTileMap;
 	std::vector<Tile> mTileTexture;
@@ -44,5 +44,5 @@ private:
 	int mColumns;
 
 	int startpX, startpY, endpX, endpY;
-	std::vector<REng::Math::Vector2> path;
+	std::vector<EMath::Vector2> path;
 };

@@ -22,7 +22,7 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	std::getline(file, line);
 	mRows = atoi(line.c_str());
 
-	std::getline(file, line,' ');
+	std::getline(file, line, ' ');
 	std::getline(file, line);
 	mColumns = atoi(line.c_str());
 
@@ -56,7 +56,7 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	file.close();
 	assert(static_cast<int>(mTileMap.size()) == mRows * mColumns);
 
-	mGridBaseGraph.Initialize(mRows,mColumns);
+	mGridBaseGraph.Initialize(mRows, mColumns);
 
 	auto GetNeighbor = [&](int x, int y) -> GridBaseGraph::Node*
 	{
@@ -91,9 +91,9 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	}
 }
 
-REng::Math::Vector2 Tilemap::GetPixelPosition(int x, int y) const
+EMath::Vector2 Tilemap::GetPixelPosition(int x, int y) const
 {
-	return{(x + 0.5f) * 32,(y + 0.5f) * 32};
+	return{ (x + 0.5f) * 32,(y + 0.5f) * 32 };
 }
 
 void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
@@ -103,73 +103,73 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 
 	switch (type) {
 	case search::BfS:
+	{
+		BFS bfs;
+		if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY))
 		{
-			BFS bfs;
-			if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY))
+			closedList = bfs.GetClosedList();
+			auto node = closedList.back();
+			while (node != nullptr)
 			{
-				closedList = bfs.GetClosedList();
-				auto node = closedList.back();
-				while (node != nullptr)
-				{
-					path.push_back(GetPixelPosition(node->row, node->column));
-					node = node->parent;
-				}
-				std::reverse(path.begin(), path.end());
-				mClosedList = bfs.GetClosedList();
+				path.push_back(GetPixelPosition(node->row, node->column));
+				node = node->parent;
 			}
-			else
-			{
-				mClosedList = bfs.GetClosedList();
-			}
-			break;
+			std::reverse(path.begin(), path.end());
+			mClosedList = bfs.GetClosedList();
 		}
+		else
+		{
+			mClosedList = bfs.GetClosedList();
+		}
+		break;
+	}
 	case search::DfS:
+	{
+		DFS dfs;
+		if (dfs.Run(mGridBaseGraph, startX, startY, endX, endY))
 		{
-			DFS dfs;
-			if (dfs.Run(mGridBaseGraph, startX, startY, endX, endY))
+			closedList = dfs.GetClosedList();
+			auto node = closedList.back();
+			while (node != nullptr)
 			{
-				closedList = dfs.GetClosedList();
-				auto node = closedList.back();
-				while (node != nullptr)
-				{
-					path.push_back(GetPixelPosition(node->row, node->column));
-					node = node->parent;
-				}
-				std::reverse(path.begin(), path.end());
-				mClosedList = dfs.GetClosedList();
+				path.push_back(GetPixelPosition(node->row, node->column));
+				node = node->parent;
 			}
-			else
-			{
-				mClosedList = dfs.GetClosedList();
-			}
-			break;
+			std::reverse(path.begin(), path.end());
+			mClosedList = dfs.GetClosedList();
 		}
+		else
+		{
+			mClosedList = dfs.GetClosedList();
+		}
+		break;
+	}
 	case search::Dijikstra:
+	{
+		Dijkstra dijkstra;
+		auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA)
 		{
-			Dijkstra dijkstra;
-			auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA)
-			{
-				return GetCost(nodeA);
-			};
+			return GetCost(nodeA);
+		};
 
-			if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY, getCostWrapper))
+		if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY, getCostWrapper))
+		{
+			closedList = dijkstra.GetClosedList();
+			auto node = closedList.back();
+			while (node != nullptr)
 			{
-				closedList = dijkstra.GetClosedList();
-				auto node = closedList.back();
-				while (node != nullptr)
-				{
-					path.push_back(GetPixelPosition(node->column, node->row));
-					node = node->parent;
-				}
-				std::reverse(path.begin(), path.end());
-				mClosedList = dijkstra.GetClosedList();
+				path.push_back(GetPixelPosition(node->column, node->row));
+				node = node->parent;
 			}
-			else
-			{
-				mClosedList = dijkstra.GetClosedList();
-			}
-			break;
+			std::reverse(path.begin(), path.end());
+			mClosedList = dijkstra.GetClosedList();
 		}
+		else
+		{
+			mClosedList = dijkstra.GetClosedList();
+		}
+		break;
+	}
 	case search::AsTAR:
 	{
 		Astar astar;
@@ -204,7 +204,7 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 }
 
 
-float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const{
+float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const {
 	const int tileIndex = ToIndex(nodeA->row, nodeA->column, mRows);
 	return mTileTexture[mTileMap[tileIndex]].weight;
 }
@@ -212,7 +212,6 @@ float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const{
 
 void Tilemap::LoadTiles(const char* tilesPath)
 {
-	//Implement this
 	std::fstream file;
 	file.open(tilesPath, std::ios::in);
 	assert(file.is_open(), "File does not exist!");
@@ -240,8 +239,8 @@ void Tilemap::LoadTiles(const char* tilesPath)
 
 		weight = atoi(weightText.c_str());
 
-		std::string tileFullPath;
-		REng::ResourcesFullPath(path, tileFullPath);
+		
+		std::string tileFullPath = REng::ResourcesFullPath(path);
 		Tile newTile;
 		newTile.texture = LoadTexture(tileFullPath.c_str());
 		newTile.weight = weight;
@@ -253,14 +252,14 @@ void Tilemap::LoadTiles(const char* tilesPath)
 
 void Tilemap::Render()
 {
-	REng::Math::Vector2 position(0.0f, 0.0f);
+	EMath::Vector2 position(0.0f, 0.0f);
 
-	for(int y = 0; y < mColumns; ++y)
+	for (int y = 0; y < mColumns; ++y)
 	{
 		for (int x = 0; x < mRows; ++x)
 		{
 			int tileIndex = mTileMap[ToIndex(x, y, mRows)];
-				DrawTexture(mTileTexture[tileIndex].texture, static_cast<int>(position.x), static_cast<int>(position.y), WHITE);
+			DrawTexture(mTileTexture[tileIndex].texture, static_cast<int>(position.x), static_cast<int>(position.y), WHITE);
 			position.x += 32;
 		}
 		position.x = 0.0f;
@@ -268,7 +267,7 @@ void Tilemap::Render()
 	}
 
 	const int tileSize = 32;
-	REng::Math::Vector2 startingPosition(16,16);
+	EMath::Vector2 startingPosition(16, 16);
 	float sX = startingPosition.x;
 	float sY = startingPosition.y;
 	for (int y = 0; y < mColumns; y++)
@@ -292,11 +291,11 @@ void Tilemap::Render()
 
 	for (auto& node : mClosedList)
 	{
-		if(node->parent)
+		if (node->parent)
 		{
-			REng::Math::Vector2 startP = GetPixelPosition(node->row, node->column);
-			REng::Math::Vector2 endP = GetPixelPosition(node->parent->row, node->parent->column);
-			DrawLine(startP.x,startP.y ,endP.x ,endP.y , PINK);
+			EMath::Vector2 startP = GetPixelPosition(node->row, node->column);
+			EMath::Vector2 endP = GetPixelPosition(node->parent->row, node->parent->column);
+			DrawLine(startP.x, startP.y, endP.x, endP.y, PINK);
 		}
 	}
 
@@ -304,8 +303,8 @@ void Tilemap::Render()
 		DrawCircle(i.x, i.y, 10.0f, ORANGE);
 	}
 
-	REng::Math::Vector2 startP = GetPixelPosition(startpX, startpY);
-	REng::Math::Vector2 endP = GetPixelPosition(endpX, endpY);
+	EMath::Vector2 startP = GetPixelPosition(startpX, startpY);
+	EMath::Vector2 endP = GetPixelPosition(endpX, endpY);
 	DrawCircle(startP.x, startP.y, 10.0f, GREEN);
 	DrawCircle(endP.x, endP.y, 10.0f, RED);
 

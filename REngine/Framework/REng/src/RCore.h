@@ -1,7 +1,6 @@
 #pragma once
 
 #include "RayLibImGui.h"
-#include "Precompiled.h"
 
 namespace REng
 {
@@ -60,8 +59,9 @@ namespace REng
         CloseWindowRaylib();
     }
 
-    inline void ResourcesFullPath(const std::string& imageName, std::string& fullPath)
+    inline std::string ResourcesFullPath(const std::string& imageName)
     {
-        fullPath = "..\\Resources\\" + imageName;
+        std::string fullPath = "..\\Resources\\" + imageName;
+        return fullPath;
     }
 }

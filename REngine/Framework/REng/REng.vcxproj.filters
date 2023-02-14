@@ -9,16 +9,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\RayLibImGui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\rlImGuiColors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\RCore.h">
@@ -27,19 +21,24 @@
     <ClInclude Include="src\REngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Precompiled.h">
+    <ClInclude Include="src\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Common.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\RayLibImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RMath.cpp">
+    <ClCompile Include="src\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Precompiled.cpp">
+    <ClCompile Include="src\RCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rlImGuiColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\REngine.cpp">
