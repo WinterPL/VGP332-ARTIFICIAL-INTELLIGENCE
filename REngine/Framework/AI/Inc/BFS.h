@@ -1,14 +1,14 @@
 #pragma once
 
-#include "GridBaseGraph.h"
+#include "GridBasedGraph.h"
 
 namespace AI
 {
-	using NodeList = std::list<GridBaseGraph::Node*>;
+	using NodeList = std::list<GridBasedGraph::Node*>;
 	class BFS
 	{
 	public:
-		bool Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY);
+		bool Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY);
 		const NodeList& GetClosedList() const { return mClosedList; }
 
 	private:

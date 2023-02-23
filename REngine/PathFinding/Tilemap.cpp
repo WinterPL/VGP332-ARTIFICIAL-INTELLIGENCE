@@ -56,11 +56,11 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	file.close();
 	assert(static_cast<int>(mTileMap.size()) == mRows * mColumns);
 
-	mGridBaseGraph.Initialize(mRows, mColumns);
+	mGridBasedGraph.Initialize(mRows, mColumns);
 
-	auto GetNeighbor = [&](int x, int y) -> GridBaseGraph::Node*
+	auto GetNeighbor = [&](int x, int y) -> GridBasedGraph::Node*
 	{
-		auto node = mGridBaseGraph.GetNode(x, y);
+		auto node = mGridBasedGraph.GetNode(x, y);
 
 		if (node == nullptr)
 			return nullptr;
@@ -78,14 +78,14 @@ void Tilemap::LoadTileMap(const char* tileMap)
 		{
 			if (!IsBlocked(x, y))
 			{
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::East] = GetNeighbor(x + 1, y);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::West] = GetNeighbor(x - 1, y);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::North] = GetNeighbor(x, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::South] = GetNeighbor(x, y + 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthEast] = GetNeighbor(x + 1, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthWest] = GetNeighbor(x - 1, y - 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthEast] = GetNeighbor(x + 1, y + 1);
-				mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthWest] = GetNeighbor(x - 1, y + 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::East] = GetNeighbor(x + 1, y);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::West] = GetNeighbor(x - 1, y);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::North] = GetNeighbor(x, y - 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::South] = GetNeighbor(x, y + 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::NorthEast] = GetNeighbor(x + 1, y - 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::NorthWest] = GetNeighbor(x - 1, y - 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::SouthEast] = GetNeighbor(x + 1, y + 1);
+				mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::SouthWest] = GetNeighbor(x - 1, y + 1);
 			}
 		}
 	}
@@ -105,7 +105,7 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 	case search::BfS:
 	{
 		BFS bfs;
-		if (bfs.Run(mGridBaseGraph, startX, startY, endX, endY))
+		if (bfs.Run(mGridBasedGraph, startX, startY, endX, endY))
 		{
 			closedList = bfs.GetClosedList();
 			auto node = closedList.back();
@@ -126,7 +126,7 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 	case search::DfS:
 	{
 		DFS dfs;
-		if (dfs.Run(mGridBaseGraph, startX, startY, endX, endY))
+		if (dfs.Run(mGridBasedGraph, startX, startY, endX, endY))
 		{
 			closedList = dfs.GetClosedList();
 			auto node = closedList.back();
@@ -147,12 +147,12 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 	case search::Dijikstra:
 	{
 		Dijkstra dijkstra;
-		auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA)
+		auto getCostWrapper = [&](const GridBasedGraph::Node* nodeA)
 		{
 			return GetCost(nodeA);
 		};
 
-		if (dijkstra.Run(mGridBaseGraph, startX, startY, endX, endY, getCostWrapper))
+		if (dijkstra.Run(mGridBasedGraph, startX, startY, endX, endY, getCostWrapper))
 		{
 			closedList = dijkstra.GetClosedList();
 			auto node = closedList.back();
@@ -173,16 +173,16 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 	case search::AsTAR:
 	{
 		Astar astar;
-		auto getCostWrapper = [&](const GridBaseGraph::Node* nodeA)
+		auto getCostWrapper = [&](const GridBasedGraph::Node* nodeA)
 		{
 			return GetCost(nodeA);
 		};
-		auto getHeuristicsWrapper = [&](const GridBaseGraph::Node* nodeA, const GridBaseGraph::Node* nodeB)
+		auto getHeuristicsWrapper = [&](const GridBasedGraph::Node* nodeA, const GridBasedGraph::Node* nodeB)
 		{
 			return GetCost(nodeA);
 		};
 
-		if (astar.Run(mGridBaseGraph, startX, startY, endX, endY, getCostWrapper, getHeuristicsWrapper))
+		if (astar.Run(mGridBasedGraph, startX, startY, endX, endY, getCostWrapper, getHeuristicsWrapper))
 		{
 			closedList = astar.GetClosedList();
 			auto node = closedList.back();
@@ -204,9 +204,9 @@ void Tilemap::FindPath(int startX, int startY, int endX, int endY, search type)
 }
 
 
-float Tilemap::GetCost(const AI::GridBaseGraph::Node* nodeA) const {
+float Tilemap::GetCost(const AI::GridBasedGraph::Node* nodeA) const {
 	const int tileIndex = ToIndex(nodeA->row, nodeA->column, mRows);
-	return mTileTexture[mTileMap[tileIndex]].weight;
+	return mTileTexture[mTileMap[(int)tileIndex]].weight;
 }
 
 
@@ -274,14 +274,14 @@ void Tilemap::Render()
 	{
 		for (int x = 0; x < mRows; x++)
 		{
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::East]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)sY, BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::West]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)sY, BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::North]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY - (float)tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::South]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY + (float)tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::NorthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
-			if (mGridBaseGraph.GetNode(x, y)->neighbors[GridBaseGraph::SouthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::East]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)sY, BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::West]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)sY, BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::North]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::South]) { DrawLine((int)sX, (int)sY, (int)sX, (int)(sY + (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::NorthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::NorthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY - (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::SouthEast]) { DrawLine((int)sX, (int)sY, (int)(sX + (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
+			if (mGridBasedGraph.GetNode(x, y)->neighbors[GridBasedGraph::SouthWest]) { DrawLine((int)sX, (int)sY, (int)(sX - (float)tileSize), (int)(sY + (float)tileSize), BLACK); }
 			sX += 32;
 		}
 		sX = static_cast<float>(tileSize) * 0.5f;
@@ -295,18 +295,18 @@ void Tilemap::Render()
 		{
 			EMath::Vector2 startP = GetPixelPosition(node->row, node->column);
 			EMath::Vector2 endP = GetPixelPosition(node->parent->row, node->parent->column);
-			DrawLine(startP.x, startP.y, endP.x, endP.y, PINK);
+			DrawLine((int)startP.x, (int)startP.y, (int)endP.x, (int)endP.y, PINK);
 		}
 	}
 
 	for (auto& i : path) {
-		DrawCircle(i.x, i.y, 10.0f, ORANGE);
+		DrawCircle((int)i.x, (int)i.y, 10.0f, ORANGE);
 	}
 
 	EMath::Vector2 startP = GetPixelPosition(startpX, startpY);
 	EMath::Vector2 endP = GetPixelPosition(endpX, endpY);
-	DrawCircle(startP.x, startP.y, 10.0f, GREEN);
-	DrawCircle(endP.x, endP.y, 10.0f, RED);
+	DrawCircle((int)startP.x, (int)startP.y, 10.0f, GREEN);
+	DrawCircle((int)endP.x, (int)endP.y, 10.0f, RED);
 
 }
 

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "GridBaseGraph.h"
+#include "GridBasedGraph.h"
 
 namespace AI
 {
-	using NodeList = std::list<GridBaseGraph::Node*>;
-	using GetCost = std::function<float(const GridBaseGraph::Node*)>;
+	using NodeList = std::list<GridBasedGraph::Node*>;
+	using GetCost = std::function<float(const GridBasedGraph::Node*)>;
 	class Dijkstra
 	{
 	public:
-		bool Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost);
+		bool Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost);
 		const NodeList& GetClosedList() const { return mClosedList; }
 
 	private:

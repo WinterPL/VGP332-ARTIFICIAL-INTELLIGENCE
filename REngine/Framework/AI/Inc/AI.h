@@ -3,9 +3,9 @@
 #include "Common.h"
 
 //PathFinding
-#include "GridBaseGraph.h"
-#include "BFS.h"
+#include "GridBasedGraph.h"
 #include "DFS.h"
+#include "BFS.h"
 #include "Dijkstra.h"
 #include "Astar.h"
 
@@ -15,3 +15,8 @@
 
 //FSM
 #include "StateMachine.h"
+
+//Steering
+#include "SteeringBehavior.h"
+#include "SteeringModule.h"
+#include "SeekBehavior.h"

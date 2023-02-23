@@ -3,7 +3,7 @@
 
 using namespace AI;
 
-bool DFS::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY)
+bool DFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 {
 	graph.ResetSearchParameters();
 	auto node = graph.GetNode(startX, startY);

@@ -3,12 +3,12 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <OutDir>..\bin\VGP332\$(Configuration)</OutDir>
-    <IntDir>..\obj\VGP332\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <OutDir>$(SolutionDir)bin\VGP332\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)obj\VGP332\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\Framework\REng\src;..\External\raylib\src;..\External\imgui;..\External\raylib\src\external\glfw\include;..\External\fontawesome;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework\REng\src;$(SolutionDir)External\raylib\src;$(SolutionDir)External\imgui;$(SolutionDir)External\raylib\src\external\glfw\include;$(SolutionDir)External\fontawesome;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

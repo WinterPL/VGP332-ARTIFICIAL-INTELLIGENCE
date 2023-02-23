@@ -29,7 +29,7 @@ public:
 	bool IsBlocked(int x, int y) const;
 	void FindPath(int startX, int startY, int endX, int endY, search type);
 
-	float GetCost(const AI::GridBaseGraph::Node* nodeA) const;
+	float GetCost(const AI::GridBasedGraph::Node* nodeA) const;
 
 
 private:
@@ -38,7 +38,7 @@ private:
 	std::vector<int> mTileMap;
 	std::vector<Tile> mTileTexture;
 
-	AI::GridBaseGraph mGridBaseGraph;
+	AI::GridBasedGraph mGridBasedGraph;
 	AI::NodeList mClosedList;
 	int mRows;
 	int mColumns;

@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EMath", "Framework\EMath\EM
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FSM", "FSM\FSM.vcxproj", "{AC220E94-183E-4670-BF18-99BA9902D3E5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Steering", "Steering\Steering.vcxproj", "{8A48198E-B67D-48B9-A750-81532D3C5790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -87,6 +89,14 @@ Global
 		{AC220E94-183E-4670-BF18-99BA9902D3E5}.Release|x64.Build.0 = Release|x64
 		{AC220E94-183E-4670-BF18-99BA9902D3E5}.Release|x86.ActiveCfg = Release|Win32
 		{AC220E94-183E-4670-BF18-99BA9902D3E5}.Release|x86.Build.0 = Release|Win32
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Debug|x64.ActiveCfg = Debug|x64
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Debug|x64.Build.0 = Debug|x64
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Debug|x86.ActiveCfg = Debug|Win32
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Debug|x86.Build.0 = Debug|Win32
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Release|x64.ActiveCfg = Release|x64
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Release|x64.Build.0 = Release|x64
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Release|x86.ActiveCfg = Release|Win32
+		{8A48198E-B67D-48B9-A750-81532D3C5790}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

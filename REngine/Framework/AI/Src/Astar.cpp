@@ -3,7 +3,7 @@
 
 using namespace AI;
 
-bool Astar::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost, GetHeuristics getH)
+bool Astar::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost, GetHeuristics getH)
 {
 	//Reset everything
 	graph.ResetSearchParameters();

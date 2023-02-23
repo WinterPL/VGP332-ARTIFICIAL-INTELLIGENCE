@@ -9,6 +9,7 @@
 #include <stack>
 
 #include <EMath.h>
+#include <raylib.h>
 
 #define AIAssert(condition, message) \
     do { \

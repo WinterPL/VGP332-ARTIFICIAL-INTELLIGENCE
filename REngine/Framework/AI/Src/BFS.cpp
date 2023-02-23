@@ -3,7 +3,7 @@
 
 using namespace AI;
 
-bool BFS::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY)
+bool BFS::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY)
 {
 	//Reset everything
 	graph.ResetSearchParameters();

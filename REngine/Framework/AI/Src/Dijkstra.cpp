@@ -3,7 +3,7 @@
 
 using namespace AI;
 
-bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost)
+bool Dijkstra::Run(GridBasedGraph& graph, int startX, int startY, int endX, int endY, GetCost getCost)
 {
 	//Reset everything
 	graph.ResetSearchParameters();
@@ -41,7 +41,7 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 						//Or
 						//insert sorted
 					mOpenList.push_back(neighbore);
-					mOpenList.sort([](GridBaseGraph::Node* lhs, GridBaseGraph::Node* rhs) {return lhs->g < rhs->g; });		
+					mOpenList.sort([](GridBasedGraph::Node* lhs, GridBasedGraph::Node* rhs) {return lhs->g < rhs->g; });		
 				}
 				else if (neighbore->g > (currentNode->g + getCost(neighbore)))
 				{
@@ -53,7 +53,7 @@ bool Dijkstra::Run(GridBaseGraph& graph, int startX, int startY, int endX, int e
 					//	use a newg that is cheaper
 					//	resort the open list (For ASTAR you need to consider g + h)
 					//	Heuristics in this case don't change! ->ASTAR
-					mOpenList.sort([](GridBaseGraph::Node* lhs, GridBaseGraph::Node* rhs) {return lhs->g < rhs->g; });
+					mOpenList.sort([](GridBasedGraph::Node* lhs, GridBasedGraph::Node* rhs) {return lhs->g < rhs->g; });
 				}
 			}
 		}

@@ -22,6 +22,12 @@
     <Filter Include="Inc\FSM">
       <UniqueIdentifier>{778a0e5a-9c35-4b85-a963-be2746de247f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inc\Steering">
+      <UniqueIdentifier>{dd485b5d-55b1-4a9d-9f37-22543a1ccb62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Steering">
+      <UniqueIdentifier>{fc05bd10-b3b3-4199-b3b5-aa5bb91ecce0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\AI.h">
@@ -36,7 +42,7 @@
     <ClInclude Include="Inc\Test.h">
       <Filter>Inc</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\GridBaseGraph.h">
+    <ClInclude Include="Inc\GridBasedGraph.h">
       <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="Inc\BFS.h">
@@ -60,6 +66,15 @@
     <ClInclude Include="Inc\StateMachine.h">
       <Filter>Inc\FSM</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\SteeringModule.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SteeringBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\SeekBehavior.h">
+      <Filter>Inc\FSM</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\Astar.h">
       <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
@@ -74,7 +89,7 @@
     <ClCompile Include="Src\Test.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\GridBaseGraph.cpp">
+    <ClCompile Include="Src\GridBasedGraph.cpp">
       <Filter>Src\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Src\BFS.cpp">
@@ -91,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="Src\Agent.cpp">
       <Filter>Src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SteeringModule.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\SeekBehavior.cpp">
+      <Filter>Src\Steering</Filter>
     </ClCompile>
     <ClCompile Include="Src\Astar.cpp">
       <Filter>Src\Pathfinding</Filter>
