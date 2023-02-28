@@ -81,6 +81,12 @@
     <ClInclude Include="Inc\DFS.h">
       <Filter>Inc\Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\WanderBehavior.h">
+      <Filter>Inc\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\WanderBehavior.cpp">
+      <Filter>Src\Steering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">

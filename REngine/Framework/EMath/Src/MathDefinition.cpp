@@ -759,6 +759,28 @@ int EMath::RandomInt(int min, int max)
 	return rand() % max + min;
 }
 
+Vector2 EMath::RandomVector2(Vector2 min, Vector2 max)
+{
+	Vector2 randomVector2 = Vector2::Zero();
+	MathAssert(max.x > min.x && max.y > min.y, "[EMath] Invalid parameters. Max X should be greater than Min X.");
+	float random = RandomFloat(min.x, max.x);
+	randomVector2.x = random;
+	
+	random = RandomFloat(min.y, max.y);
+	randomVector2.y = random;
+	return randomVector2;
+}
+Vector2 EMath::RandomUnitCircle(bool normalized)
+{
+	Vector2 randomVector = RandomVector2({ -1.0f,-1.0f }, { 1.0f,1.0f });
+	if (normalized)
+	{
+		return Normalize(randomVector);
+	}
+	return randomVector;
+
+}
+
 EMath::Vector3 EMath::VecMax(const Vector3& a, const Vector3& b)
 {
 	Vector3 result;

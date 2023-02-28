@@ -743,6 +743,8 @@ namespace EMath
 
 	float RandomFloat(float min, float max);
 	int RandomInt(int min, int max);
+	Vector2 RandomVector2(Vector2 min, Vector2 max);
+	Vector2 RandomUnitCircle(bool normalized = true);
 
 	Vector3 VecMax(const Vector3& a, const Vector3& b);
 

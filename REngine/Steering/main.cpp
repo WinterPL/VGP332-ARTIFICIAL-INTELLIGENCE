@@ -3,6 +3,11 @@
 
 #include "Spaceship.h"
 
+//wander globals
+float wanderRadius = 5.0f;
+float wanderDistance = 5.0f;
+float wanderJitter = 5.0f;
+
 namespace
 {
 	std::unique_ptr<AI::AIWorld> world;
@@ -43,6 +48,10 @@ void GameCleanup()
 
 void RenderDebugUI()
 {
+	ImGui::Begin("Steering Controls", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+	
+	
+	ImGui::End();
 }
 
 int main()

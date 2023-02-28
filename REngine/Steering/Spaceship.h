@@ -20,4 +20,5 @@ private:
 
 	//Keep the reference for steering behaviors as a weak pointer
 	AI::SeekBehavior* mSeekBehavior = nullptr;
+	AI::WanderBehavior* mWanderBehavior = nullptr;
 };

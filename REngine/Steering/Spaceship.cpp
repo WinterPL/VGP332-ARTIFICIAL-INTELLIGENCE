@@ -11,8 +11,13 @@ void Spaceship::Load()
 
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
+	mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderBehavior>();
+
 	mSeekBehavior->SetActive(true);
+	mWanderBehavior->SetActive(true);
+
 	mSeekBehavior->ShowDebug(true);
+	mWanderBehavior->ShowDebug(true);
 
 	for (int i = 0; i < mTextures.size(); ++i)
 	{
@@ -34,6 +39,10 @@ void Spaceship::Unload()
 
 void Spaceship::Update(float deltaTime)
 {
+	if (mWanderBehavior->IsActive()) {
+		mWanderBehavior->Setup(wanderRadius,wanderDistance, wanderJitter);
+	}
+
 	const auto force = mSteeringModule->Calculate();
 	const auto acceleration = force / mass;
 	velocity += acceleration * deltaTime;

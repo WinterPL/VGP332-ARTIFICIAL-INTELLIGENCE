@@ -174,7 +174,9 @@
     <ClInclude Include="Inc\SteeringBehavior.h" />
     <ClInclude Include="Inc\SteeringModule.h" />
     <ClInclude Include="Inc\Test.h" />
+    <ClInclude Include="Inc\WanderBehavior.h" />
     <ClInclude Include="Src\Precompiled.h" />
+    <ClInclude Include="Src\WanderBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Agent.cpp" />
