@@ -18,5 +18,5 @@ EMath::Matrix3 Agent::GetWorldTransform() const {
 	
 	return { s.x,s.y,0.0f,
 			 h.x,h.y,0.0f,
-			 d.x,d.y,0.0f };
+			 d.x,d.y,1.0f };
 }

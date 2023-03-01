@@ -20,6 +20,9 @@ namespace AI
 			return mNextId++;
 		}
 
+		void AddObstacles(EMath::Circle circle) { mObstacles.push_back(circle); }
+		Obstacles GetObstacles() const { return mObstacles; }
+
 	private:
 		EntityPtrs mEntities;
 		Obstacles mObstacles;
@@ -61,5 +64,3 @@ namespace AI
 //dynamic_cast - Run time
 //Reinterpret_cast
 //const_cast
-
-

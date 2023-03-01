@@ -1,6 +1,10 @@
 #include "Spaceship.h"
 #include "TypeIds.h"
 
+extern float wanderRadius;
+extern float wanderDistance;
+extern float wanderJitter;
+
 Spaceship::Spaceship(AI::AIWorld& world)
 	: Agent(world, Types::Spaceship)
 {}
@@ -12,12 +16,13 @@ void Spaceship::Load()
 	mSteeringModule = std::make_unique<AI::SteeringModule>(*this);
 	mSeekBehavior = mSteeringModule->AddBehavior<AI::SeekBehavior>();
 	mWanderBehavior = mSteeringModule->AddBehavior<AI::WanderBehavior>();
-
-	mSeekBehavior->SetActive(true);
+	//mSeekBehavior->SetActive(false);
 	mWanderBehavior->SetActive(true);
 
-	mSeekBehavior->ShowDebug(true);
+
+	//mSeekBehavior->ShowDebug(true);
 	mWanderBehavior->ShowDebug(true);
+
 
 	for (int i = 0; i < mTextures.size(); ++i)
 	{
@@ -30,17 +35,13 @@ void Spaceship::Load()
 }
 
 void Spaceship::Unload()
-{
-	for (auto& tt : mTextures)
-	{
-		UnloadTexture(tt);
-	}
-}
+{}
 
 void Spaceship::Update(float deltaTime)
 {
-	if (mWanderBehavior->IsActive()) {
-		mWanderBehavior->Setup(wanderRadius,wanderDistance, wanderJitter);
+	if (mWanderBehavior->IsActive())
+	{
+		mWanderBehavior->Setup(wanderRadius, wanderDistance, wanderJitter);
 	}
 
 	const auto force = mSteeringModule->Calculate();
@@ -79,8 +80,8 @@ void Spaceship::Render()
 	float angle = atan2(-heading.x, heading.y) + EMath::kPi;
 	float percent = angle / EMath::kTwoPi;
 
-	const int frame = static_cast<int>((percent * mTextures.size())) % mTextures.size();
+	const int frame = static_cast<int>(percent * mTextures.size()) % mTextures.size();
 
 	DrawTexture(mTextures[frame], position.x - mTextures[frame].width * 0.5f, position.y - mTextures[frame].height * 0.5f, WHITE);
-	DrawCircle((int)destination.x, (int)destination.y, 5.0f, RED);
+	DrawCircle(destination.x, destination.y, 5.0f, RED);
 }
