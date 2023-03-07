@@ -45,4 +45,4 @@ private:
 
 	int startpX, startpY, endpX, endpY;
 	std::vector<EMath::Vector2> path;
-}; #pragma once
+};

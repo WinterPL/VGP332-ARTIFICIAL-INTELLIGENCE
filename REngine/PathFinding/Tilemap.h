@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>  
-#include<string>  
+#include <string>  
 #include <REngine.h>
 #include "AI.h"
 using namespace std;
