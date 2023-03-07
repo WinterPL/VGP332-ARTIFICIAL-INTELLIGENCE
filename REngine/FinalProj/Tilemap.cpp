@@ -26,6 +26,23 @@ void Tilemap::LoadTileMap(const char* tileMap)
 	std::getline(file, line);
 	mColumns = atoi(line.c_str());
 
+	/*while (std::getline(file, line) && line != "")
+	{
+		std::string lineString = line;
+		while (!lineString.empty())
+		{
+			size_t pos = lineString.find(" ");
+			std::string tileValue = lineString.substr(0, pos);
+			size_t prevSize = lineString.size();
+			lineString = lineString.substr(pos + 1);
+			size_t newSize = lineString.size();
+			mTileMap.push_back(atoi(tileValue.c_str()));
+			if (prevSize == newSize)
+			{
+				break;
+			}
+		}
+	}*/
 	for (int i = 0; i < mColumns; i++) {
 		getline(file, line);
 		stringstream ss(line);
@@ -222,7 +239,7 @@ void Tilemap::LoadTiles(const char* tilesPath)
 
 		weight = atoi(weightText.c_str());
 
-
+		
 		std::string tileFullPath = REng::ResourcesFullPath(path);
 		Tile newTile;
 		newTile.texture = LoadTexture(tileFullPath.c_str());
@@ -249,7 +266,7 @@ void Tilemap::Render()
 		position.y += 32;
 	}
 
-	const int tileSize = 32;
+	/*const int tileSize = 32;
 	EMath::Vector2 startingPosition(16, 16);
 	float sX = startingPosition.x;
 	float sY = startingPosition.y;
@@ -289,7 +306,7 @@ void Tilemap::Render()
 	EMath::Vector2 startP = GetPixelPosition(startpX, startpY);
 	EMath::Vector2 endP = GetPixelPosition(endpX, endpY);
 	DrawCircle((int)startP.x, (int)startP.y, 10.0f, GREEN);
-	DrawCircle((int)endP.x, (int)endP.y, 10.0f, RED);
+	DrawCircle((int)endP.x, (int)endP.y, 10.0f, RED);*/
 
 }
 
