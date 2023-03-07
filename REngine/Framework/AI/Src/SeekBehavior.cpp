@@ -20,8 +20,8 @@ EMath::Vector2 SeekBehavior::Calculate(Agent& agent)
 
 	if (IsDebug())
 	{
-		DrawLine(agent.position.x, agent.position.y, agent.position.x + desiredVelocity.x, agent.position.y + desiredVelocity.y, YELLOW);
-		DrawLine(agent.position.x, agent.position.y, agent.position.x + agent.velocity.x, agent.position.y + agent.velocity.y, GREEN);
+		DrawLine((int)agent.position.x, (int)agent.position.y, (int)agent.position.x + (int)desiredVelocity.x, (int)agent.position.y + (int)desiredVelocity.y, YELLOW);
+		DrawLine((int)agent.position.x, (int)agent.position.y, (int)agent.position.x + (int)agent.velocity.x, (int)agent.position.y + (int)agent.velocity.y, GREEN);
 	}
 
 
