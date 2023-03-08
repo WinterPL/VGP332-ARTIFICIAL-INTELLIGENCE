@@ -13,9 +13,6 @@ public:
 private:
 	std::string fullpath;
 	EMath::Vector2 position{ 200.f, 304.0f };
-	EMath::Vector2 positionHome{ 200.f, 304.0f };
-	EMath::Vector2 positionMine{ 1175.f, 304.0f };
-	EMath::Vector2 positionSaloon{ 736.f, 660.0f };
 	Texture2D myTexture;
 	Rectangle rect;
 	float offsetY = 94;

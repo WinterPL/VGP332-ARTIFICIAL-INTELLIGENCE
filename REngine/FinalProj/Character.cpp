@@ -38,13 +38,16 @@ void Character::Update() {
 				currentTime = 0.0f;
 				rect.width = -offsetX;
 			}
+			std::cout << position.x << " || " << position.y << std::endl;
 		}
 		if (IsKeyDown(KeyboardKey::KEY_UP) && position.y > 15.f) {
 			position.y -= moveSpeed * GetFrameTime();
+			std::cout << position.x << " || " << position.y << std::endl;
 			
 		}
 		if (IsKeyDown(KeyboardKey::KEY_DOWN) && position.y < 770.f) {
 			position.y += moveSpeed * GetFrameTime();
+			std::cout << position.x << " || " << position.y << std::endl;
 		}
 	
 	DrawTextureRec(myTexture, rect, {position.x,position.y}, WHITE);

@@ -4,10 +4,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="NPC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="NPC.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="FANCY.txt">
