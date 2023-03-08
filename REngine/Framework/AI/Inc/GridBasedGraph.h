@@ -26,7 +26,7 @@ namespace AI
 			//Search parameters for pathfinding
 			Node* parent = nullptr;
 			bool opened = false;
-			bool closed = false;
+
 
 			//Dijkstra and A* info
 			float g = 0.0f;

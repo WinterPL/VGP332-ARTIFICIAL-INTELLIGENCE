@@ -1,4 +1,4 @@
-Tiles: 11
+Tiles: 14
 grass_bottom_left.png 0
 grass_bottom_middle.png 0
 grass_bottom_right.png 0
@@ -10,3 +10,6 @@ grass_top_middle.png 0
 grass_top_right.png 0
 wall.png 5
 water.png 7
+house.png 0
+mining.png 0
+business.png 0

@@ -1,70 +1,70 @@
 #include "Precompiled.h"
 #include "GridBasedGraph.h"
 
-using namespace AI;
+namespace AI {
 
-void GridBasedGraph::Initialize(int columns, int rows)
-{
-	//TODO
-	//Resize mNodes to the matching dimension
-	//for each node, set it's attributes (row / collumn)
-	mRows = rows;
-	mColumns = columns;
-	mNodes.resize(mRows * mColumns);
-
-	for (int y = 0; y < mRows; ++y)
+	void GridBasedGraph::Initialize(int rows, int columns)
 	{
-		for (int x = 0; x < mRows; ++x)
+		//TODO
+		//Resize mNodes to the matching dimension
+		//for each node, set it's attributes (row / collumn)
+		mRows = rows;
+		mColumns = columns;
+		mNodes.resize(mRows * mColumns);
+
+		for (int y = 0; y < mColumns; ++y)
 		{
-			mNodes[GetIndex(x, y)].column = x;
-			mNodes[GetIndex(x, y)].row = y;
+			for (int x = 0; x < mRows; ++x)
+			{
+				mNodes[GetIndex(x, y)].row = x;
+				mNodes[GetIndex(x, y)].column = y;
+			}
 		}
 	}
-}
 
-void GridBasedGraph::ResetSearchParameters()
-{
-	for (auto& node : mNodes)
+	void GridBasedGraph::ResetSearchParameters()
 	{
-		node.parent = nullptr;
-		node.opened = false;
-		node.closed = false;
-		node.g = 0.0f;
-		node.h = 0.0f;
+		for (auto& node : mNodes)
+		{
+			node.parent = nullptr;
+			node.opened = false;
+			node.g = 0.0f;
+			node.h = 0.0f;
+		}
 	}
-}
 
-GridBasedGraph::Node* GridBasedGraph::GetNode(int x, int y)
-{
-	if (x < 0 || x >= mColumns || y < 0 || y >= mRows)
+	GridBasedGraph::Node* GridBasedGraph::GetNode(int x, int y)
 	{
-		return nullptr;
+		if (x < 0 || x >= mRows || y < 0 || y >= mColumns)
+		{
+			return nullptr;
+		}
+		const int index = GetIndex(x, y);
+		return &mNodes[index];
 	}
-	const int index = GetIndex(x, y);
-	return &mNodes[index];
-}
 
-const GridBasedGraph::Node* GridBasedGraph::GetNode(int x, int y) const
-{
-	if (x < 0 || x >= mColumns || y < 0 || y >= mRows)
+	const GridBasedGraph::Node* GridBasedGraph::GetNode(int x, int y) const
 	{
-		return nullptr;
+		if (x < 0 || x >= mRows || y < 0 || y >= mColumns)
+		{
+			return nullptr;
+		}
+		const int index = GetIndex(x, y);
+		return &mNodes[index];
 	}
-	const int index = GetIndex(x, y);
-	return &mNodes[index];
-}
 
-int GridBasedGraph::GetColumns() const
-{
-	return mColumns;
-}
+	int GridBasedGraph::GetColumns() const
+	{
+		return mColumns;
+	}
 
-int GridBasedGraph::GetRows() const
-{
-	return mRows;
-}
+	int GridBasedGraph::GetRows() const
+	{
+		return mRows;
+	}
 
-int GridBasedGraph::GetIndex(int x, int y) const
-{
-	return x + (y * mColumns);
+	int GridBasedGraph::GetIndex(int x, int y) const
+	{
+		return x + (y * mRows);
+	}
 }

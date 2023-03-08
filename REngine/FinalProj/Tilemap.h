@@ -24,6 +24,7 @@ public:
 	void LoadTileMap(const char* tileMap);
 	void LoadTiles(const char* tilesPath);
 	void Render();
+	void RenderLine();
 	void cleanup();
 
 	bool IsBlocked(int x, int y) const;
